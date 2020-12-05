@@ -13,3 +13,5 @@ public class NewpizzaappApplication {
     }
 
 }
+
+// Mozna tu dawac @Bean skoro to ma wbudowane @Configuration?
