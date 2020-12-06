@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rejestracja w bazie</title>
+</head>
+<body>
+<h1>Rejestracja:</h1>
+
+<form th:action="@{/add-user}" th:object="${emptyUser}" method="post">
+    <p>Imie:<input type="text" th:field="*{firstName}"></p>
+    <p>Nazwisko:<input type="text" th:field="*{lastName}"></p>
+    <p><input type="submit" value="Rejestruj"></p>
+</form>
+
+<a href="/">HOME</a>
+</body>
+</html>

@@ -31,6 +31,11 @@ public class DefaultUserServiceImpl implements UserService {
         userRepository.save(new User(fName, lName));
     }
 
+    @Override
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
 }
 
 // Czy to okej podejscie?

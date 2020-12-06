@@ -5,17 +5,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Users page</title>
+    <title>Użytkownicy</title>
 </head>
 <body>
 <h1>Użytkownicy w bazie:</h1>
 <table style="border: 1px solid black;">
     <tr><th>Id</th><th>First name</th><th>Last name</th></tr>
-    <tr th:each="user : ${usersMethod}">
+    <tr th:each="user : ${users}">
         <td><p th:text="${user.getId()}"></p></td>
         <td><p th:text="${user.getFirstName()}"></p></td>
         <td><p th:text="${user.getLastName()}"></p></td></tr>
 </table>
 
+<a href="/">HOME</a>
 </body>
 </html>
