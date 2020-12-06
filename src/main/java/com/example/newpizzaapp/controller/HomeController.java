@@ -5,10 +5,8 @@ import com.example.newpizzaapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,10 +33,20 @@ public class HomeController {
         return "Uzytkownik zapisany";
     }
 
-    @GetMapping("/users")
-    @ResponseBody
-    public List<User> getUsers() {
+    @ModelAttribute("usersMethod")
+    public List<User> allUsersList() {
         return userService.getAllUsers();
+    }
+
+    @GetMapping("/users")
+    public String getUsers(Model model) {
+//        model.addAllAttributes(userService.getAllUsers());
+
+//        model.addAttribute("fName1", userService.getAllUsers().get(0).getFirstName());
+//        model.addAttribute("lName1", userService.getAllUsers().get(0).getLastName());
+//        model.addAttribute("fName2", userService.getAllUsers().get(1).getFirstName());
+//        model.addAttribute("lName2", userService.getAllUsers().get(1).getLastName());
+        return "users";
     }
 
 }

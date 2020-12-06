@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,5 +9,13 @@
 </head>
 <body>
 <h1>Użytkownicy w bazie:</h1>
+<table style="border: 1px solid black;">
+    <tr><th>Id</th><th>First name</th><th>Last name</th></tr>
+    <tr th:each="user : ${usersMethod}">
+        <td><p th:text="${user.getId()}"></p></td>
+        <td><p th:text="${user.getFirstName()}"></p></td>
+        <td><p th:text="${user.getLastName()}"></p></td></tr>
+</table>
+
 </body>
 </html>
