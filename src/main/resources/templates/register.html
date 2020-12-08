@@ -10,6 +10,9 @@
 <form th:action="@{/add-user}" th:object="${emptyUser}" method="post">
     <p>Imie:<input type="text" th:field="*{firstName}"></p>
     <p>Nazwisko:<input type="text" th:field="*{lastName}"></p>
+    <p>E-mail:<input type="text" th:field="*{email}"></p>
+    <p>login:<input type="text" th:field="*{login}"></p>
+    <p>haslo:<input type="password" th:field="*{password}"></p>
     <p><input type="submit" value="Rejestruj"></p>
 </form>
 

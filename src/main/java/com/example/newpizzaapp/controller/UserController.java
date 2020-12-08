@@ -22,13 +22,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/add")
-    @ResponseBody
-    public String dodajUzytkownika(@RequestParam String firstName, @RequestParam String lastName) {
-        userService.saveUser(firstName, lastName);
-
-        return "Uzytkownik zapisany";
-    }
 
     @GetMapping("/users")
     public String getUsers(Model model) {
