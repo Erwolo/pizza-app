@@ -14,11 +14,13 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    @Qualifier("defaultUserSerivice")
+
     private final UserService userService;
+
 
     @Autowired
     public UserController(UserService userService) {
+
         this.userService = userService;
     }
 

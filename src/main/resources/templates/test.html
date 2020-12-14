@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-
+<div ></div>
+<p th:text="${dummyUser.firstName}"></p>
+<span th:if="${dummyUser.firstName == 'Andrzej'}" style="color: blueviolet">Female</span>
+<span th:unless="${dummyUser.firstName != 'Adnrzej'}">Male</span>
+<p th:text="${param.tekst}"></p>
 </body>
 </html>

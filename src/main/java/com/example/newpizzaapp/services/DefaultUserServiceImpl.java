@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("defaultUserSerivice")
+@Service
 public class DefaultUserServiceImpl implements UserService {
     UserRepository userRepository;
 
@@ -38,4 +38,3 @@ public class DefaultUserServiceImpl implements UserService {
 
 }
 
-// Czy to okej podejscie?
