@@ -1,5 +1,7 @@
 package com.example.newpizzaapp.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,12 +16,17 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     @Column(unique = true)
     private String login;
     private String password;
     private boolean isActive;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER
+            ,cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+    })
     @JoinTable(
             name = "users_roles",
             joinColumns = {@JoinColumn(name = "user_id")},

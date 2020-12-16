@@ -33,10 +33,4 @@ public class UserController {
         return "users";
     }
 
-    // Nie wiem czy jest jakas roznica z tym wyzej
-    @ModelAttribute("usersMethod")
-    public List<User> allUsersList() {
-        return userService.getAllUsers();
-    }
-
 }

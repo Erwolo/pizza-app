@@ -26,10 +26,6 @@ public class DefaultUserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Override
-    public void saveUser(String fName, String lName) {
-        userRepository.save(new User(fName, lName));
-    }
 
     @Override
     public void saveUser(User user) {
