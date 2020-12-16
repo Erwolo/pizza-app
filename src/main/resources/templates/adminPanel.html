@@ -2,11 +2,13 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Training Application Form</title>
+    <title>Dodawanie dania</title>
 
     <style>
+
         html, body {
             min-height: 100%;
+            alignment: center;
         }
 
         body, div, form, input, select, p {
@@ -31,16 +33,8 @@
             font-weight: 400;
         }
 
-        .testbox {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: inherit;
-            padding: 20px;
-        }
-
         form {
-            width: 100%;
+            width: 50%;
             padding: 20px;
             border-radius: 6px;
             background: #fff;
@@ -96,6 +90,7 @@
         .item {
             position: relative;
             margin: 10px 0;
+            width: 50%
         }
 
         input[type="date"]::-webkit-inner-spin-button {
@@ -195,14 +190,14 @@
         }
 
         @media (min-width: 568px) {
-            .name-item, .city-item {
+            .name-item {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
             }
 
-            .name-item input, .city-item input {
-                width: calc(50% - 20px);
+            .city-item input {
+                width: 50%
             }
 
             .city-item select {
@@ -212,32 +207,28 @@
     </style>
 </head>
 <body>
-<div class="testbox">
-    <form action="/">
-        <div class="banner">
-            <h1>Dodawanie jedzenia</h1>
+<form action="/">
+    <div class="banner">
+        <h1>Dodawanie jedzenia</h1>
+    </div>
+    <h2>Szczegóły</h2>
+    <div class="item">
+        <p>Name</p>
+        <div class="name-item">
+            <input type="text" name="name" placeholder="Nazwa jedzenia"/>
         </div>
-        <h2>Szczegóły</h2>
-        <div class="item">
-            <p>Name</p>
-            <div class="name-item">
-                <input type="text" name="name" placeholder="Nazwa jedzenia"/>
-            </div>
-        </div>
-        <div class="item">
-            <select>
-                <option value="1">Pizza</option>
-                <option value="2">Danie główne</option>
-                <option value="3">Przekąski</option>
+    </div>
+    <div class="item">
+        <select>
+            <option value="1">Pizza</option>
+            <option value="2">Danie główne</option>
+            <option value="3">Przekąski</option>
 
-            </select>
-        </div>
-</div>
-<div class="btn-block">
-    <button type="submit" href="/">Dodaj</button>
-</div>
+        </select>
+    </div>
+    <div class="btn-block">
+        <button type="submit" href="/">Dodaj</button>
+    </div>
 </form>
-</div>
-</body>
 </body>
 </html>
