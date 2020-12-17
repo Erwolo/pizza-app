@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-@EnableWebMvc
+//@EnableWebMvc
 @EnableWebSecurity
 public class NewpizzaappApplication {
 
@@ -16,4 +16,4 @@ public class NewpizzaappApplication {
 
 }
 
-// Mozna tu dawac @Bean skoro to ma wbudowane @Configuration?
+

@@ -24,7 +24,7 @@ public class MyUserDetails implements UserDetails {
         this.active = user.isActive();
         // Tu se robie Collection<GrantedAuthority>
         this.authorities = new ArrayList<>();
-        user.getRoles().forEach(e -> authorities.add(new SimpleGrantedAuthority(e.getRoleName())));
+        user.getRoles().forEach(e -> authorities.add(new SimpleGrantedAuthority("ROLE_" + e.getRoleName())));
 
     }
 

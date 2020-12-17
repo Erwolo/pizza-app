@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Dodawanie dania</title>
-
+    <link rel = "stylesheet" type = "text/css" th:href = "@{adminpanel.css}" />
     <style>
 
         html, body {
@@ -207,24 +207,30 @@
     </style>
 </head>
 <body>
-<form action="/">
+<form th:action="@{/add-meal}" th:object="${emptyMeal}" method="post">
     <div class="banner">
         <h1>Dodawanie jedzenia</h1>
     </div>
     <h2>Szczegóły</h2>
     <div class="item">
-        <p>Name</p>
+        <p>Nazwa</p>
         <div class="name-item">
             <input type="text" name="name" placeholder="Nazwa jedzenia"/>
         </div>
     </div>
     <div class="item">
+        <p>Kategoria</p>
         <select>
             <option value="1">Pizza</option>
             <option value="2">Danie główne</option>
             <option value="3">Przekąski</option>
-
         </select>
+    </div>
+    <div class="item">
+        <p>Cena</p>
+        <div class="name-item">
+            <input type="number" name="price" placeholder="Cena"/>
+        </div>
     </div>
     <div class="btn-block">
         <button type="submit" href="/">Dodaj</button>

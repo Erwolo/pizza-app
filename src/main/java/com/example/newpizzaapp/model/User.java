@@ -22,15 +22,15 @@ public class User {
     private String login;
     private String password;
     private boolean isActive;
-    @ManyToMany(fetch = FetchType.EAGER
-            ,cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE,
-    })
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE,
+            })
     @JoinTable(
             name = "users_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = { @JoinColumn(name = "role_id")}
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     private Set<Role> roles = new HashSet<>();
 

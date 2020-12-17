@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.HashSet;
+
 
 @Controller
 public class RegisterController {
@@ -33,6 +35,8 @@ public class RegisterController {
 
     @PostMapping("/add-user")
     public String addUser(@ModelAttribute User user) {
+        user.setActive(true);
+        userService.addRoleUser(user);
         userService.saveUser(user);
         log.info("Dodano uzytkownika " + user.toString());
         return "redirect:/register";
