@@ -9,13 +9,9 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
 
     @GetMapping
-    public String indexPage() {
+    public String loadIndexPage() {
         return "index";
     }
 
-/*    @GetMapping
-    public ResponseEntity<String> hello() {
-        return new ResponseEntity<>("Test response", HttpStatus.OK);
-    }*/
 
 }

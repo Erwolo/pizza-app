@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @ControllerAdvice
@@ -22,7 +21,7 @@ public class TestController {
 
 
     @ModelAttribute
-    public String zaladujCos(Model model) {
+    public String loadSth(Model model) {
 
         model.addAttribute("zmienna", "wartosc dla addAttribute");
         return "wartosc zwrocona";
