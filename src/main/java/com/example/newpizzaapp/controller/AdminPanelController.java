@@ -33,7 +33,6 @@ public class AdminPanelController {
         return "adminPanel";
     }
 
-    // TODO: no źle coś z tą kategorią jedzenia
     @PostMapping("/add-meal")
     public String addMeal(@ModelAttribute(name = "emptyMeal") Food food) {
         foodService.addFood(food);
