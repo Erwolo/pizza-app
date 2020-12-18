@@ -49,7 +49,6 @@ public class FoodCategory {
         return "FoodCategory{" +
                 "id=" + id +
                 ", categoryName='" + categoryName + '\'' +
-                ", foodSet=" + foodSet +
                 '}';
     }
 }

@@ -30,11 +30,11 @@ public class Food {
         this.id = id;
     }
 
-    public String getNameOfFood() {
+    public String getFoodName() {
         return foodName;
     }
 
-    public void setNameOfFood(String nameOfFood) {
+    public void setFoodName(String nameOfFood) {
         this.foodName = nameOfFood;
     }
 
@@ -59,7 +59,7 @@ public class Food {
         return "Food{" +
                 "id=" + id +
                 ", nameOfFood='" + foodName + '\'' +
-                ", foodCategory=" + foodCategory +
+                ", foodCategory=" + foodCategory.getCategoryName() +
                 ", price=" + price +
                 '}';
     }

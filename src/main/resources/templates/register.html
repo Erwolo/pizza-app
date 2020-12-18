@@ -11,8 +11,12 @@
     <p>Imie:<input type="text" th:field="*{firstName}"></p>
     <p>Nazwisko:<input type="text" th:field="*{lastName}"></p>
     <p>E-mail:<input type="text" th:field="*{email}"></p>
-    <p>login:<input type="text" th:field="*{login}"></p>
-    <p>haslo:<input type="password" th:field="*{password}"></p>
+    <p>login:<label>
+        <input type="text" th:field="*{login}">
+    </label></p>
+    <p>haslo:<label>
+        <input type="password" th:field="*{password}">
+    </label></p>
     <p><input type="submit" value="Rejestruj"></p>
 </form>
 

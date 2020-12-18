@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dodawanie dania</title>
-    <link rel = "stylesheet" type = "text/css" th:href = "@{adminpanel.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{adminpanel.css}"/>
     <style>
 
         html, body {
@@ -215,25 +215,23 @@
     <div class="item">
         <p>Nazwa</p>
         <div class="name-item">
-            <input type="text" name="name" placeholder="Nazwa jedzenia"/>
+            <input type="text" name="name" placeholder="Nazwa jedzenia" th:field="*{foodName}"/>
         </div>
     </div>
     <div class="item">
         <p>Kategoria</p>
-        <select>
-            <option value="1">Pizza</option>
-            <option value="2">Danie główne</option>
-            <option value="3">Przekąski</option>
+        <select th:field="*{foodCategory}">
+            <option th:each="category: ${foodCategories}" th:value="${category.id}" th:text="${category.categoryName}"></option>
         </select>
     </div>
     <div class="item">
         <p>Cena</p>
         <div class="name-item">
-            <input type="number" name="price" placeholder="Cena"/>
+            <input type="number" name="price" placeholder="Cena" th:field="*{price}"/>
         </div>
     </div>
     <div class="btn-block">
-        <button type="submit" href="/">Dodaj</button>
+        <button type="submit">Dodaj</button>
     </div>
 </form>
 </body>
