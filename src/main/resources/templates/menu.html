@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Menu</title>
+</head>
+<body>
+
+<h1>Pizza</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Nazwa</th>
+        <th>Cena</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${pizzaList.empty}">
+        <td colspan="2">Brak pozycji</td>
+    </tr>
+    <tr th:each="pizza: ${pizzaList}">
+        <td><span th:text="${pizza.foodName}">Nazwa</span></td>
+        <td><span th:text="${pizza.price}">Cena</span></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Dania główne</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Nazwa</th>
+        <th>Cena</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${courseList.empty}">
+        <td colspan="2">Brak pozycji</td>
+    </tr>
+    <tr th:each="course: ${courseList}">
+        <td><span th:text="${course.foodName}">Nazwa</span></td>
+        <td><span th:text="${course.price}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Przekaski</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Nazwa</th>
+        <th>Cena</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${snackList.empty}">
+        <td colspan="2">Brak pozycji</td>
+    </tr>
+    <tr th:each="snack: ${snackList}">
+        <td><span th:text="${snack.foodName}">Nazwa</span></td>
+        <td><span th:text="${snack.price}">Cena</span></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
