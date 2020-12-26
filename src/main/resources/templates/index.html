@@ -13,6 +13,52 @@
 <a href="/register">Rejestracja</a>&nbsp;
 <a href="/menu">Karta jedzenia</a>&nbsp;
 <a href="/users">Użytkownicy</a>&nbsp;
-<a href="/admin">Panel admina</a>
+<a href="/admin">Panel admina</a><br>
+<div id="kategorie">
+    <select onchange="myShow('#jedzenie')">
+        <option th:value="0" th:text="Wybierz">
+        </option>
+        <option th:each="category : ${foodCategories}" th:value="${category.id}" th:text="${category.categoryName}">
+        </option>
+    </select>
+</div>
+<div id="jedzenie">
+    <select>
+        <option>Margarita</option>
+        <option>Kapricioza</option>
+    </select>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        $('#jedzenie').hide();
+
+    });
+
+
+    function myHide(znacznik) {
+        $(znacznik).hide()
+    }
+
+    function myShow(znacznik) {
+        $(znacznik).slideDown(300);
+    }
+
+    function funkcjaTomka() {
+        $.ajax({
+            url: "/HomeController", // Nie wiem jaki
+            cache: false,
+            success: function(content){
+                $("#jedzenie").html(content);
+            }
+        });}
+</script>
+
+
 </body>
 </html>
