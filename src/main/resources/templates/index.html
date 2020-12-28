@@ -14,7 +14,9 @@
 <a href="/menu">Karta jedzenia</a>&nbsp;
 <a href="/users">Użytkownicy</a>&nbsp;
 <a href="/admin">Panel admina</a><br>
+<form>
 <div id="kategorie">
+    <p>Wybierz kategorie: </p>
     <select id="kategorieSelect" th:onchange="funkcjaTomka()">
         <option th:value="0" th:text="Wybierz">
         </option>
@@ -23,6 +25,7 @@
     </select>
 </div>
 <div id="jedzenie">
+    <p>Wybierz produkt: </p>
     <select id="pizza">
         <option th:each="pizza : ${pizzaList}" th:value="${pizza.id}"
                 th:text="${pizza.foodName}">
@@ -35,7 +38,12 @@
         <option th:each="snack : ${snackList}" th:value="${snack.id}"
                 th:text="${snack.foodName}">
     </select>
+    <p>Ilość: </p>
+    <input type="number">
+    <br><br><button>Dodaj</button><button>Dalej</button>
 </div>
+
+</form>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
