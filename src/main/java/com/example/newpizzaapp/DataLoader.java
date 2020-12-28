@@ -11,7 +11,6 @@ public class DataLoader implements ApplicationRunner {
 
     private final FoodCategoryRepository foodCategoryRepository;
 
-    @Autowired
     public DataLoader(FoodCategoryRepository foodCategoryRepository) {
         this.foodCategoryRepository = foodCategoryRepository;
     }

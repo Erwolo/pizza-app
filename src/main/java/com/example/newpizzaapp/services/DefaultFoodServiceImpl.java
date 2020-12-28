@@ -13,7 +13,6 @@ public class DefaultFoodServiceImpl implements FoodService {
 
     private final FoodRepository foodRepository;
 
-    @Autowired
     public DefaultFoodServiceImpl(FoodRepository foodRepository, FoodCategoryRepository foodCategoryRepository) {
         this.foodRepository = foodRepository;
     }

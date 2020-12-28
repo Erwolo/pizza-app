@@ -19,7 +19,7 @@ public class AdminPanelController {
     private final FoodCategoryService foodCategoryService;
     private final FoodService foodService;
 
-    @Autowired
+
     public AdminPanelController(FoodCategoryService foodCategoryService, FoodService foodService) {
         this.foodCategoryService = foodCategoryService;
         this.foodService = foodService;

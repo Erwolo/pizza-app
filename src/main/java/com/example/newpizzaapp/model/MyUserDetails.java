@@ -1,5 +1,8 @@
 package com.example.newpizzaapp.model;
 
+import com.example.newpizzaapp.repository.RoleRepository;
+import com.example.newpizzaapp.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,8 +18,10 @@ public class MyUserDetails implements UserDetails {
     private boolean active;
     private List<GrantedAuthority> authorities;
 
-    public MyUserDetails() {
-    }
+
+
+
+    public MyUserDetails() { }
 
     public MyUserDetails(User user) {
         this.userName = user.getLogin();
@@ -24,6 +29,10 @@ public class MyUserDetails implements UserDetails {
         this.active = user.isActive();
         // Tu se robie Collection<GrantedAuthority>
         this.authorities = new ArrayList<>();
+//        roleRepository.findAllByUsersId(user.getId()).forEach(e -> authorities.add(new SimpleGrantedAuthority("ROLE_" + e.getRoleName())));
+//        System.out.println(roleRepository.findAllByUsersId(user.getId()));
+
+
         user.getRoles().forEach(e -> authorities.add(new SimpleGrantedAuthority("ROLE_" + e.getRoleName())));
 
     }

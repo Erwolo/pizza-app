@@ -22,7 +22,7 @@ public class RegisterController {
     @Qualifier("defaultUserService")
     private final UserService userService;
 
-    @Autowired
+
     public RegisterController(UserService userService) {
         this.userService = userService;
     }

@@ -11,7 +11,6 @@ public class MenuController {
 
     private final FoodService foodService;
 
-    @Autowired
     public MenuController(FoodService foodService) {
         this.foodService = foodService;
     }

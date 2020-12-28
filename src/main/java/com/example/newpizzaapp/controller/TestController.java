@@ -2,7 +2,9 @@ package com.example.newpizzaapp.controller;
 
 
 import com.example.newpizzaapp.model.User;
+import com.example.newpizzaapp.repository.RoleRepository;
 import com.example.newpizzaapp.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +17,11 @@ public class TestController {
     @Qualifier("defaultUserService")
     private final UserService userService;
 
-    public TestController(UserService userService) {
+    private final RoleRepository roleRepository;
+
+    public TestController(UserService userService, RoleRepository roleRepository) {
         this.userService = userService;
+        this.roleRepository = roleRepository;
     }
 
 
@@ -29,7 +34,8 @@ public class TestController {
 
     @RequestMapping("/test")
     public String test1(Model model) {
-        User u = userService.getUserById(1L);
+        System.out.println(roleRepository.findAllByUsersId(6L));
+        User u = userService.getUserById(6L);
         model.addAttribute("dummyUser", u);
         return "test";
     }

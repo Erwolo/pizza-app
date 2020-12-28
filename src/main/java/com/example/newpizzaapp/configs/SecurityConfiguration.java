@@ -18,9 +18,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
 
-    @Autowired
-    @Qualifier("defaultUserDetailsService")
-    UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
+
+
+    public SecurityConfiguration(@Qualifier("defaultUserDetailsService") UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

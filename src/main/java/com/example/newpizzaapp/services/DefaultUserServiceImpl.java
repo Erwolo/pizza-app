@@ -13,7 +13,6 @@ public class DefaultUserServiceImpl implements UserService {
     final UserRepository userRepository;
     final RoleRepository roleRepository;
 
-    @Autowired
     public DefaultUserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;

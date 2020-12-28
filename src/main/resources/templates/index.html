@@ -15,7 +15,7 @@
 <a href="/users">Użytkownicy</a>&nbsp;
 <a href="/admin">Panel admina</a><br>
 <div id="kategorie">
-    <select onchange="myShow('#jedzenie')">
+    <select onchange="funkcjaTomka()">
         <option th:value="0" th:text="Wybierz">
         </option>
         <option th:each="category : ${foodCategories}" th:value="${category.id}" th:text="${category.categoryName}">
@@ -30,10 +30,7 @@
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-
-
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#jedzenie').hide();
@@ -41,22 +38,15 @@
     });
 
 
-    function myHide(znacznik) {
-        $(znacznik).hide()
-    }
-
-    function myShow(znacznik) {
-        $(znacznik).slideDown(300);
-    }
-
     function funkcjaTomka() {
         $.ajax({
-            url: "/HomeController", // Nie wiem jaki
+            url: "/",
             cache: false,
-            success: function(content){
-                $("#jedzenie").html(content);
+            success: function () {
+                $("#jedzenie").slideDown(300);
             }
-        });}
+        });
+    }
 </script>
 
 

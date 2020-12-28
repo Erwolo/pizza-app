@@ -20,7 +20,7 @@ public class HomeController {
         this.foodService = foodService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String loadIndexPage(Model model) {
 
         model.addAttribute("foodCategories", foodCategoryService.getAllCategories());
