@@ -3,7 +3,6 @@ package com.example.newpizzaapp.controller;
 
 import com.example.newpizzaapp.services.FoodCategoryService;
 import com.example.newpizzaapp.services.FoodService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +23,10 @@ public class HomeController {
     public String loadIndexPage(Model model) {
 
         model.addAttribute("foodCategories", foodCategoryService.getAllCategories());
+        model.addAttribute("pizzaList", foodService.getAllFromCategory("Pizza"));
+        model.addAttribute("mainCourseList", foodService.getAllFromCategory("Danie Glowne"));
+        model.addAttribute("snackList", foodService.getAllFromCategory("Przekaski"));
+
         return "index";
     }
 

@@ -15,28 +15,51 @@
 <a href="/users">Użytkownicy</a>&nbsp;
 <a href="/admin">Panel admina</a><br>
 <div id="kategorie">
-    <select onchange="funkcjaTomka()">
+    <select id="kategorieSelect" th:onchange="funkcjaTomka()">
         <option th:value="0" th:text="Wybierz">
         </option>
-        <option th:each="category : ${foodCategories}" th:value="${category.id}" th:text="${category.categoryName}">
-        </option>
+        <option id="optCat" th:each="category : ${foodCategories}" th:value="${category.id}"
+                th:text="${category.categoryName}">
     </select>
 </div>
 <div id="jedzenie">
-    <select>
-        <option>Margarita</option>
-        <option>Kapricioza</option>
+    <select id="pizza">
+        <option th:each="pizza : ${pizzaList}" th:value="${pizza.id}"
+                th:text="${pizza.foodName}">
+    </select>
+    <select id="mainCourse">
+        <option th:each="course : ${mainCourseList}" th:value="${course.id}"
+                th:text="${course.foodName}">
+    </select>
+    <select id="snack">
+        <option th:each="snack : ${snackList}" th:value="${snack.id}"
+                th:text="${snack.foodName}">
     </select>
 </div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#jedzenie').hide();
-
+    $('#jedzenie').hide();
+    $('#pizza').hide();
+    $('#mainCourse').hide();
+    $('#snack').hide();
+    $('#kategorieSelect').on('change', function () {
+        pokazWyborJedzenia();
     });
 
+
+    function pokazWyborJedzenia() {
+        var wartosc = $('#kategorieSelect').val();
+        var nazwa = "";
+        if (wartosc == 8) nazwa = "#pizza";
+        if (wartosc == 9) nazwa = "#mainCourse";
+        if (wartosc == 10) nazwa = "#snack";
+        $('#pizza').hide();
+        $('#mainCourse').hide();
+        $('#snack').hide();
+        $(nazwa).slideDown(300);
+    }
 
     function funkcjaTomka() {
         $.ajax({
