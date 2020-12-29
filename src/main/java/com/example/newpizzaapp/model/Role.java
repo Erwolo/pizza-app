@@ -10,7 +10,7 @@ public class Role {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String roleName;
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();

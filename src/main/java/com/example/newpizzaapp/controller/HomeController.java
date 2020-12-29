@@ -30,5 +30,12 @@ public class HomeController {
         return "index";
     }
 
+    @PostMapping("/place-order")
+    public String placeOrder() {
+
+        return "redirect:/";
+    }
+
+
 
 }

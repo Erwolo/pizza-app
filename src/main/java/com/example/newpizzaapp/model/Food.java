@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Food {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String foodName;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "food_category_id", nullable = false)

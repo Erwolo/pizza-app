@@ -14,8 +14,9 @@
 <a href="/menu">Karta jedzenia</a>&nbsp;
 <a href="/users">Użytkownicy</a>&nbsp;
 <a href="/admin">Panel admina</a><br>
-<form>
+<form action="" method="post">
 <div id="kategorie">
+
     <p>Wybierz kategorie: </p>
     <select id="kategorieSelect" th:onchange="pokazJedzenie()">
         <option th:value="0" th:text="Wybierz">
@@ -40,7 +41,8 @@
     </select>
     <p>Ilość: </p>
     <input type="number">
-    <br><br><button>Dodaj</button><button>Dalej</button>
+    <br><br><button onclick="dodajDoKoszyka()">Dodaj</button> <!-- stworzyc dodawanie do koszyka -->
+    <button type="submit">Dalej</button>
 </div>
 
 </form>

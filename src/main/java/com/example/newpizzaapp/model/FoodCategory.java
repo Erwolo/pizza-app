@@ -8,7 +8,7 @@ import java.util.Set;
 public class FoodCategory {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String categoryName;
     @OneToMany(mappedBy = "foodCategory")
     private Set<Food> foodSet = new HashSet<>();
