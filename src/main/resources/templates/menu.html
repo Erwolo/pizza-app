@@ -12,6 +12,7 @@
     <tr>
         <th>Nazwa</th>
         <th>Cena</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
     <tr th:each="pizza: ${pizzaList}">
         <td><span th:text="${pizza.foodName}">Nazwa</span></td>
         <td><span th:text="${pizza.price}">Cena</span></td>
+        <td><a th:href="@{/add-to-cart/{id}(id=${pizza.id})}">Dodaj</a></td>
     </tr>
     </tbody>
 </table>

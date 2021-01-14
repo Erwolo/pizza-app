@@ -31,4 +31,9 @@ public class DefaultFoodServiceImpl implements FoodService {
     public List<Food> getAllFromCategory(String categoryName) {
         return foodRepository.findAllByFoodCategoryCategoryName(categoryName);
     }
+
+    @Override
+    public Food getFoodById(Long id) {
+        return foodRepository.findById(id).get();
+    }
 }

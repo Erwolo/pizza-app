@@ -8,5 +8,6 @@ public interface FoodService {
     void addFood(Food food);
     List<Food> getAllFood();
     List<Food> getAllFromCategory(String categoryName);
+    Food getFoodById(Long id);
 
 }

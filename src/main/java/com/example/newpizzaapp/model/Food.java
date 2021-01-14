@@ -1,26 +1,19 @@
 package com.example.newpizzaapp.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Food {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     private String foodName;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "food_category_id", nullable = false)
     private FoodCategory foodCategory;
     private float price;
 
-    public Food() {
-    }
-
-    public Food(String nameOfFood, FoodCategory foodCategory, float price) {
-        this.foodName = nameOfFood;
-        this.foodCategory = foodCategory;
-        this.price = price;
-    }
 
     public long getId() {
         return id;
@@ -62,5 +55,18 @@ public class Food {
                 ", foodCategory=" + foodCategory.getCategoryName() +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Food)) return false;
+        Food food = (Food) o;
+        return id == food.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
