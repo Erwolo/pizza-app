@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RegisterController {
     Logger log = LoggerFactory.getLogger(RegisterController.class);
 
-    @Qualifier("defaultUserService")
     private final UserService userService;
 
 

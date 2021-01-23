@@ -2,85 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Strona główna</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+
+    <title>Pizza Czapka</title>
+    <style>
+        img.center {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-<h1>Strona główna</h1>
-<a href="/">Start</a>&nbsp;
-<a href="/register">Rejestracja</a>&nbsp;
-<a href="/menu">Karta jedzenia</a>&nbsp;
-<a href="/users">Użytkownicy</a>&nbsp;
-<a href="/admin">Panel admina</a><br>
-<!--<form action="" method="post">
-<div id="kategorie">
+<div th:insert="fragments/navbar :: navbar"></div>
 
-    <p>Wybierz kategorie: </p>
-    <select id="kategorieSelect" th:onchange="pokazJedzenie()">
-        <option th:value="0" th:text="Wybierz">
-        </option>
-        <option id="optCat" th:each="category : ${foodCategories}" th:value="${category.id}"
-                th:text="${category.categoryName}">
-    </select>
-</div>
-<div id="jedzenie">
-    <p>Wybierz produkt: </p>
-    <select id="pizza">
-        <option th:each="pizza : ${pizzaList}" th:value="${pizza.id}"
-                th:text="${pizza.foodName}">
-    </select>
-    <select id="mainCourse">
-        <option th:each="course : ${mainCourseList}" th:value="${course.id}"
-                th:text="${course.foodName}">
-    </select>
-    <select id="snack">
-        <option th:each="snack : ${snackList}" th:value="${snack.id}"
-                th:text="${snack.foodName}">
-    </select>
-    <p>Ilość: </p>
-    <input type="number">
-    <br><br><button onclick="dodajDoKoszyka()">Dodaj</button> &lt;!&ndash; stworzyc dodawanie do koszyka &ndash;&gt;
-    <button type="submit">Dalej</button>
-</div>
+<h1 class="body-title">Pizza Czapka</h1>
+<img class="center" width="500px" height="500px" th:src="@{/images/pineapple.jpg}">
 
-</form>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $('#jedzenie').hide();
-    $('#pizza').hide();
-    $('#mainCourse').hide();
-    $('#snack').hide();
-    $('#kategorieSelect').on('change', function () {
-        pokazWyborJedzenia();
-    });
-
-
-    function pokazWyborJedzenia() {
-        var wartosc = $('#kategorieSelect').val();
-        var nazwa = "";
-        if (wartosc == 8) nazwa = "#pizza";
-        if (wartosc == 9) nazwa = "#mainCourse";
-        if (wartosc == 10) nazwa = "#snack";
-        $('#pizza').hide();
-        $('#mainCourse').hide();
-        $('#snack').hide();
-        $(nazwa).slideDown(300);
-    }
-
-    function pokazJedzenie() {
-        $.ajax({
-            url: "/",
-            cache: false,
-            success: function () {
-                $("#jedzenie").slideDown(300);
-            }
-        });
-    }
-</script>-->
 
 
 </body>

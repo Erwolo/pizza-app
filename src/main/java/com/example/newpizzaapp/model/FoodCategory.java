@@ -2,6 +2,7 @@ package com.example.newpizzaapp.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -50,5 +51,18 @@ public class FoodCategory {
                 "id=" + id +
                 ", categoryName='" + categoryName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FoodCategory)) return false;
+        FoodCategory that = (FoodCategory) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

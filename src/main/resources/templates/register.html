@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Rejestracja w bazie</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+
 </head>
 <body>
-<h1>Rejestracja:</h1>
 
+<div class="navbar">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/menu">Menu</a></li>
+        <li><a href="#"><< RESZTA >></a> </li>
+        <li><a href="/users">Użytkownicy</a></li>
+        <li><a href="/admin">Panel admina</a></li>
+        <li style="float:right"><a href="/register">Zarejestruj</a></li>
+        <li style="float:right"><a class="active" href="/login">Zaloguj</a></li>
+        <li style="float:right"><a href="/logout">Wyloguj</a></li>
+    </ul>
+</div>
+
+<h1>Rejestracja:</h1>
 <form th:action="@{/add-user}" th:object="${emptyUser}" method="post">
     <p>Imie:<input type="text" th:field="*{firstName}"></p>
     <p>Nazwisko:<input type="text" th:field="*{lastName}"></p>
@@ -20,6 +35,5 @@
     <p><input type="submit" value="Rejestruj"></p>
 </form>
 
-<a href="/">HOME</a>
 </body>
 </html>

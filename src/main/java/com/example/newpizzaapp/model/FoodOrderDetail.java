@@ -11,16 +11,19 @@ public class FoodOrderDetail {
     private Long id;
     @Column
     private int quantity;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "food_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "food_id")
     private Food food;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    public FoodOrderDetail() {
+    public Order getOrder() {
+        return order;
     }
 
-    public FoodOrderDetail(int quantity, Food food) {
-        this.quantity = quantity;
-        this.food = food;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Long getId() {
@@ -51,7 +54,6 @@ public class FoodOrderDetail {
     public String toString() {
         return "OrderFoodDetail{" +
                 "id=" + id +
-//                ", food=" + food.getFoodName() +
                 ", quantity=" + quantity +
                 '}';
     }

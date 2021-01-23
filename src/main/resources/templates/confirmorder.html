@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Order:</h1>
+<table>
+    <thead>
+    <tr>
+        <td>Nazwa</td>
+        <td>Ilość</td>
+        <td>Kwota razem</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${cart}">
+        <td th:text="${item.getFood().getFoodName()}"></td>
+        <td th:text="${item.getQuantity()}"></td>
+        <th:block th:with="var = ${item.getFood().getPrice() * item.getQuantity()}">
+            <td th:text="${var}"></td>
+        </th:block>
+        <form th:action="@{/make-order}" th:object="${item}" method="post">
+            <input type="submit" value="Zamow">
+        </form>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>

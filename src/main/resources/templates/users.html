@@ -6,8 +6,25 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Użytkownicy</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+
 </head>
+
 <body>
+
+<div class="navbar">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/menu">Menu</a></li>
+        <li><a href="#"><< RESZTA >></a> </li>
+        <li><a href="/users">Użytkownicy</a></li>
+        <li><a href="/admin">Panel admina</a></li>
+        <li style="float:right"><a href="/register">Zarejestruj</a></li>
+        <li style="float:right"><a class="active" href="/login">Zaloguj</a></li>
+        <li style="float:right"><a href="/logout">Wyloguj</a></li>
+    </ul>
+</div>
+
 <h1>Użytkownicy w bazie:</h1>
 <table style="border: 1px solid black;">
     <tr><th>Id</th><th>First name</th><th>Last name</th></tr>

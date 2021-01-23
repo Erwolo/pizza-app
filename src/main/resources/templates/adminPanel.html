@@ -3,10 +3,25 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>Dodawanie dania</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/adminPanelStyle.css" th:href="@{/css/adminPanelStyle.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/adminPanelStyle.css" th:href="@{/css/adminPanelStyle.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
 
 </head>
 <body>
+
+<div class="navbar">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/menu">Menu</a></li>
+        <li><a href="#"><< RESZTA >></a> </li>
+        <li><a href="/users">Użytkownicy</a></li>
+        <li><a href="/admin">Panel admina</a></li>
+        <li style="float:right"><a href="/register">Zarejestruj</a></li>
+        <li style="float:right"><a class="active" href="/login">Zaloguj</a></li>
+        <li style="float:right"><a href="/logout">Wyloguj</a></li>
+    </ul>
+</div>
+
 <form th:action="@{/add-meal}" th:object="${emptyMeal}" method="post">
     <div class="banner">
         <h1>Dodawanie jedzenia</h1>

@@ -3,67 +3,34 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>Menu</title>
+    <style>
+        input {
+            width: 30px;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+
+
 </head>
 <body>
+<!--NAVBAR-->
+<div class="navbar">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/menu">Menu</a></li>
+        <li><a href="#"><< RESZTA >></a></li>
+        <li><a href="/users">Użytkownicy</a></li>
+        <li><a href="/admin">Panel admina</a></li>
+        <li><a href="/confirmorder">Koszyk</a></li>
+        <li th:if="${isLoggedIn} == false" style="float:right"><a href="/register">Zarejestruj</a></li>
+        <li th:if="${isLoggedIn} == false" style="float:right"><a class="active" href="/login">Zaloguj</a></li>
+        <li th:if="${isLoggedIn} == true" style="float:right"><a class="inactive" href="/logout">Wyloguj</a></li>
+    </ul>
+</div>
+<!--NAVBAR-->
 
-<!--<h1>Pizza</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Nazwa</th>
-        <th>Cena</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${pizzaList.empty}">
-        <td colspan="2">Brak pozycji</td>
-    </tr>
-    <tr th:each="pizza : ${pizzaList}">
-        <td><span th:text="${pizza.foodName}">food_name</span></td>
-        <td><span th:text="${pizza.price}">food_price</span></td>
-        <td><a th:href="@{/add-to-cart/{id}(id=${pizza.id})}">Dodaj</a></td>
-    </tr>
-    </tbody>
-</table>
 
-<h1>Dania główne</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Nazwa</th>
-        <th>Cena</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${courseList.empty}">
-        <td colspan="2">Brak pozycji</td>
-    </tr>
-    <tr th:each="course : ${courseList}">
-        <td><span th:text="${course.foodName}">food_name</span></td>
-        <td><span th:text="${course.price}">food_price</span></td>
-    </tr>
-    </tbody>
-</table>
-
-<h1>Przekaski</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Nazwa</th>
-        <th>Cena</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${snackList.empty}">
-        <td colspan="2">Brak pozycji</td>
-    </tr>
-    <tr th:each="snack : ${snackList}">
-        <td><span th:text="${snack.foodName}">food_name</span></td>
-        <td><span th:text="${snack.price}">food_price</span></td>
-    </tr>
-    </tbody>
-</table>-->
+<h1 th:if="${isAdmin}==true">Jesteś adminem</h1>
 <table>
     <tr th:if="${allCategories.empty}">
         <td colspan="2">Brak kategorii</td>
@@ -79,17 +46,28 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="food : ${foodService.getAllFromCategory(category.categoryName)}">
+                <tr th:if="${foodService.getAllFromCategory(category.categoryName).empty}">
+                    <td colspan="2">Produktów</td>
+                </tr>
+                <tr th:each="food, iStat : ${foodService.getAllFromCategory(category.categoryName)}">
                     <td><p th:text="${food.foodName}">food_name</p></td>
                     <td><p th:text="${food.price}">food_price</p></td>
-                    <td><a th:href="@{/add-to-cart/{id}(id=${food.id})}">Dodaj</a></td>
+                    <td>
+                        <form th:action="@{/add-to-cart}" method="post">
+                            <input type="hidden" th:value="${food.id}" name="foodId">
+                            <input type="number" name="quantity">
+                            <input type="submit" value="Dodaj" th:value="Dodaj">
+                            <input type="submit" th:formaction="@{/edit-item}" th:value="Edytuj" value="Edytuj">
+
+                        </form>
+                    </td>
+
                 </tr>
                 </tbody>
             </table>
         </td>
     </tr>
 </table>
-
 
 </body>
 </html>
