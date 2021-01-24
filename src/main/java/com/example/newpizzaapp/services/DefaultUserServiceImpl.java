@@ -24,6 +24,11 @@ public class DefaultUserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByLogin(String login) {
+        return userRepository.findByLogin(login).get();
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }

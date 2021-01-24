@@ -9,10 +9,12 @@ public class Food {
     @GeneratedValue
     private long id;
     private String foodName;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinColumn(name = "food_category_id", nullable = false)
     private FoodCategory foodCategory;
     private float price;
+
+
 
 
     public long getId() {
@@ -36,11 +38,18 @@ public class Food {
     }
 
     public void setFoodCategory(FoodCategory foodCategory) {
-        this.foodCategory = foodCategory;
+        setFoodCategory(foodCategory, true);
     }
 
     public float getPrice() {
         return price;
+    }
+
+    void setFoodCategory(FoodCategory foodCategory, boolean add) {
+        this.foodCategory = foodCategory;
+        if (foodCategory != null && add) {
+            foodCategory.addFood(this, false);
+        }
     }
 
     public void setPrice(float price) {

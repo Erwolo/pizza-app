@@ -1,5 +1,7 @@
 package com.example.newpizzaapp.model;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,11 +13,14 @@ public class Order {
     @Id
     @GeneratedValue
     private Long id;
+    @Nullable
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "item_id")
     private Set<FoodOrderDetail> itemsOrdered = new HashSet<>();
+    private boolean isPaid;
 
 
     public Long getId() {
@@ -42,10 +47,21 @@ public class Order {
         this.itemsOrdered = itemsOrdered;
     }
 
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", user=" + user.getEmail() +
+                ", itemsOrdered=" + itemsOrdered +
+                ", isPaid=" + isPaid +
                 '}';
     }
 }

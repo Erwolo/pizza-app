@@ -20,6 +20,7 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
     void updateFoodNameById(@Param(value = "id") long id, @Param(value = "name") String name);
 
     @Transactional
+    @Modifying
     @Query("update Food u set u.price = :price where u.id = :id")
     void updateFoodPriceById(@Param(value = "id") long id, @Param(value = "price") Float price);
 

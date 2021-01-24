@@ -9,21 +9,18 @@ public class FoodOrderDetail {
     @Id
     @GeneratedValue
     private Long id;
-    @Column
-    private int quantity;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "food_id")
     private Food food;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @Column
+    private int quantity;
 
-    public Order getOrder() {
-        return order;
+    public FoodOrderDetail() {
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public FoodOrderDetail(Food food, int quantity) {
+        this.food = food;
+        this.quantity = quantity;
     }
 
     public Long getId() {

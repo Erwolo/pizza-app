@@ -11,14 +11,28 @@ public class FoodCategory {
     @GeneratedValue
     private Long id;
     private String categoryName;
-    @OneToMany(mappedBy = "foodCategory")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "foodCategory", fetch = FetchType.EAGER)
     private Set<Food> foodSet = new HashSet<>();
 
     public FoodCategory() {
     }
 
-    public FoodCategory(String categoryName) {
-        this.categoryName = categoryName;
+    public void addFood(Food food) {
+        addFood(food, true);
+    }
+
+    void addFood(Food food, boolean set) {
+        if (food != null) {
+            getFoodSet().add(food);
+            if (set) {
+                food.setFoodCategory(this, false);
+            }
+        }
+    }
+
+    public void removeFood(Food food) {
+        getFoodSet().remove(food);
+        food.setFoodCategory(null);
     }
 
     public long getId() {
@@ -53,12 +67,13 @@ public class FoodCategory {
                 '}';
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof FoodCategory)) return false;
         FoodCategory that = (FoodCategory) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(id, that.id) && Objects.equals(categoryName, that.categoryName) && Objects.equals(foodSet, that.foodSet);
     }
 
     @Override

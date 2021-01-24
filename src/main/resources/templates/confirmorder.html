@@ -21,12 +21,12 @@
         <th:block th:with="var = ${item.getFood().getPrice() * item.getQuantity()}">
             <td th:text="${var}"></td>
         </th:block>
-        <form th:action="@{/make-order}" th:object="${item}" method="post">
-            <input type="submit" value="Zamow">
-        </form>
     </tr>
-
     </tbody>
+
 </table>
+<form th:action="@{/checkout}" th:object="${cart}" method="post">
+    <input type="submit" value="Zamow">
+</form>
 </body>
 </html>
