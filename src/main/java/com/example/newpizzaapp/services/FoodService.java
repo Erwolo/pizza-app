@@ -12,5 +12,6 @@ public interface FoodService {
     Food getFoodById(Long id);
     void updateFoodName(long id, String name);
     void updateFoodPrice(long id, Float price);
+    void removeFoodById(Long id);
 
 }

@@ -33,6 +33,12 @@ public class MenuController {
         return "menu";
     }
 
+    @PostMapping("/remove-item-from-db")
+    public String removeFoodFromDatabase(@RequestParam("foodId") Long id) {
+        foodService.removeFoodById(id);
+        return "redirect:/menu";
+    }
+
     @PostMapping(value = "/add-to-cart")
     public String getFoosBySimplePathWithPathVariables
             (@RequestParam(value = "foodId") long idFood, @RequestParam(value = "quantity") int quantity) {

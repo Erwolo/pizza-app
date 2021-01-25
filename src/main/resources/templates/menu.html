@@ -46,7 +46,8 @@
                             <input type="hidden" th:value="${food.id}" name="foodId">
                             <input type="number" name="quantity" th:value="1">
                             <input type="submit" th:value="Dodaj">
-                            <input type="submit" th:formaction="@{/edit-item}" th:value="Edytuj" th:if="${isAdmin}==true">
+                            <input class="admin-btn" type="submit" th:formaction="@{/edit-item}" th:value="Edytuj" th:if="${isAdmin}==true">
+                            <input class="admin-btn" type="submit" th:formaction="@{/remove-item-from-db}" th:value="Usuń" th:if="${isAdmin}==true">
 
                         </form>
                     </td>

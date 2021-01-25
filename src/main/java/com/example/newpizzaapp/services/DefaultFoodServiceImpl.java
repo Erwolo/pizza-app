@@ -64,4 +64,9 @@ public class DefaultFoodServiceImpl implements FoodService {
         }
 
     }
+
+    @Override
+    public void removeFoodById(Long id) {
+        foodRepository.deleteById(id);
+    }
 }
