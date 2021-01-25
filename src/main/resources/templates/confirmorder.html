@@ -4,27 +4,38 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/inputfield.css" th:href="@{/css/inputfield.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/orderstyling.css" th:href="@{/css/orderstyling.css}">
 </head>
 <body>
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<h1>Order:</h1>
+<h1>Koszyk:</h1>
 <table>
     <thead>
-    <tr>
+    <tr th:if="${cart.isEmpty() == false}">
         <td>Nazwa</td>
-        <td>Ilość</td>
         <td>Kwota razem</td>
+        <td>Ilość</td>
     </tr>
     </thead>
     <tbody>
+    <tr th:if="${cart.empty}">
+        <td>Pusty</td>
+    </tr>
     <tr th:each="item : ${cart}">
         <td th:text="${item.getFood().getFoodName()}"></td>
-        <td th:text="${item.getQuantity()}"></td>
-        <th:block th:with="var = ${item.getFood().getPrice() * item.getQuantity()}">
-            <td th:text="${var}"></td>
-        </th:block>
+            <th:block th:with="var = ${item.getFood().getPrice() * item.getQuantity()}">
+        <td th:text="${var}"></td></th:block>
+        <td>
+            <form th:action="@{/change-in-cart-quantity}" method="post">
+                <input type="hidden" th:value="${item.getFood().getId()}" th:name="id">
+                <input class="quant-field" type="number" th:value="${item.getQuantity()}" th:name="newQuantity">
+                <input type="submit" th:value="Potwierdź">
+                <input type="submit" th:value="Usuń" th:formaction="@{/remove-from-cart}">
+            </form>
+        </td>
     </tr>
     </tbody>
 

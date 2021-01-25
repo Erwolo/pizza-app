@@ -22,6 +22,15 @@ public class CartItem {
         this.quantity = this.quantity + quantity;
     }
 
+    public void decreaseQuantityBy(int quantity) {
+        if (this.quantity - quantity <= 0) {
+            this.quantity = 0;
+        }
+        else {
+            this.quantity = this.quantity - quantity;
+        }
+    }
+
     public Food getFood() {
         return food;
     }

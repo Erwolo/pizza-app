@@ -2,6 +2,7 @@ package com.example.newpizzaapp.controller;
 
 import com.example.newpizzaapp.model.*;
 import com.example.newpizzaapp.services.FoodOrderDetailService;
+import com.example.newpizzaapp.services.FoodService;
 import com.example.newpizzaapp.services.OrderService;
 import com.example.newpizzaapp.services.UserService;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +25,18 @@ public class ConfirmOrderController {
 
     Logger log = LoggerFactory.getLogger(ConfirmOrderController.class);
 
-
+    private final FoodService foodService;
     private final OrderController orderController;
     private final FoodOrderDetailService foodOrderDetailService;
     private final OrderService orderService;
     private final UserService userService;
 
-    public ConfirmOrderController(OrderController orderController, OrderService orderService, FoodOrderDetailService foodOrderDetailService, UserService userService) {
+    public ConfirmOrderController(OrderController orderController, OrderService orderService, FoodOrderDetailService foodOrderDetailService, UserService userService, FoodService foodService) {
         this.orderController = orderController;
         this.orderService = orderService;
         this.foodOrderDetailService = foodOrderDetailService;
         this.userService = userService;
+        this.foodService = foodService;
     }
 
     @GetMapping("/confirmorder")
@@ -42,6 +45,19 @@ public class ConfirmOrderController {
         model.addAttribute("cart", orderController.getShoppingCart());
 
         return "confirmorder";
+    }
+
+    @PostMapping("/change-in-cart-quantity")
+    public String changeFoodQuantity(@RequestParam("id") Long id, @RequestParam("newQuantity") Integer newQuantity) {
+        Food tmpFood = foodService.getFoodById(id);
+        orderController.setInCartItemQuant(tmpFood, newQuantity);
+        return "redirect:/confirmorder";
+    }
+
+    @PostMapping("/remove-from-cart")
+    public String removeItemFromCart(@RequestParam("id") Long id) {
+        orderController.removeItemFromCart(foodService.getFoodById(id));
+        return "redirect:/confirmorder";
     }
 
     @PostMapping("/checkout")

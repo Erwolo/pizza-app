@@ -9,6 +9,8 @@
         }
     </style>
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/inputfield.css" th:href="@{/css/inputfield.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/menustyling.css" th:href="@{/css/menustyling.css}">
 
 
 </head>
@@ -28,21 +30,21 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Nazwa</th>
-                    <th>Cena</th>
+                    <th class="item-name">Nazwa</th>
+                    <th class="item-price">Cena</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:if="${foodService.getAllFromCategory(category.categoryName).empty}">
-                    <td colspan="2">Produktów</td>
+                    <td colspan="2">Brak produktów</td>
                 </tr>
                 <tr th:each="food, iStat : ${foodService.getAllFromCategory(category.categoryName)}">
-                    <td><p th:text="${food.foodName}">food_name</p></td>
-                    <td><p th:text="${food.price}">food_price</p></td>
+                    <td class="item-name"><p th:text="${food.foodName}">food_name</p></td>
+                    <td class="item-price"><p th:text="${food.price}">food_price</p></td>
                     <td>
                         <form th:action="@{/add-to-cart}" method="post">
                             <input type="hidden" th:value="${food.id}" name="foodId">
-                            <input type="number" name="quantity">
+                            <input type="number" name="quantity" th:value="1">
                             <input type="submit" th:value="Dodaj">
                             <input type="submit" th:formaction="@{/edit-item}" th:value="Edytuj" th:if="${isAdmin}==true">
 
