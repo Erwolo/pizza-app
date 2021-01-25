@@ -54,8 +54,8 @@ public class ConfirmOrderController {
 
         cart.forEach(e -> cartItems.add(new FoodOrderDetail(e.getFood(), e.getQuantity())));
         cartItems.forEach(e -> {
-            FoodOrderDetail tmpFOD = foodOrderDetailService.saveCartPositionGetObj(e); // zapisanie zamowionej pozycji do bazy
-            finalOrder.getItemsOrdered().add(tmpFOD); // dodanie pozycji do ogólnego zamowienia
+            FoodOrderDetail tmpFOD = foodOrderDetailService.saveCartPositionGetObj(e);
+            finalOrder.getItemsOrdered().add(tmpFOD);
         });
 
         if (authentication != null) {
