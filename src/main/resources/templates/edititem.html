@@ -7,29 +7,17 @@
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
 </head>
 <body>
-<!--NAVBAR-->
-<div class="navbar">
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/menu">Menu</a></li>
-        <li><a href="#"><< RESZTA >></a></li>
-        <li><a href="/users">Użytkownicy</a></li>
-        <li><a href="/admin">Panel admina</a></li>
-        <li style="float:right"><a href="/register">Zarejestruj</a></li>
-        <li style="float:right"><a class="active" href="/login">Zaloguj</a></li>
-        <li style="float:right"><a class="inactive" href="/logout">Wyloguj</a></li>
-    </ul>
-</div>
-<!--NAVBAR-->
+
+<div th:replace="fragments/navbar :: navbar"></div>
 
 
 <h1>Strona do edytowania jedzenia</h1>
 <form method="post" th:action="@{/update-item}" th:object="${editedFood}">
     <input type="hidden" name="foodId" th:value="${editedFood.getId()}"> <!-- było ${id} sprobuj z *{id} -->
     <p th:text="Nazwa"></p>
-    <input type="text" name="foodName">
+    <input type="text" name="foodName" th:value="${editedFood.getFoodName()}">
     <p th:text="Cena"></p>
-    <input type="number" name="foodPrice">
+    <input type="number" name="foodPrice" th:value="${editedFood.getPrice()}">
 
     <input type="submit">
 </form>

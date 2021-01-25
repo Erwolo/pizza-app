@@ -1,6 +1,7 @@
 package com.example.newpizzaapp.controller;
 
 import com.example.newpizzaapp.model.Food;
+import com.example.newpizzaapp.model.MyAuthenticationUtil;
 import com.example.newpizzaapp.services.FoodCategoryService;
 import com.example.newpizzaapp.services.FoodService;
 
@@ -26,15 +27,7 @@ public class MenuController {
 
     @GetMapping("/menu")
     public String displayMenu(Model model, Authentication authentication) {
-        boolean isAdmin = false;
-        boolean isLoggedIn = false;
-        if (authentication != null) {
-            isAdmin = authentication.getAuthorities().stream().anyMatch(t -> t.getAuthority().equals("ROLE_ADMIN"));
-            isLoggedIn = true;
-        }
-
-        model.addAttribute("isAdmin", isAdmin);
-        model.addAttribute("isLoggedIn", isLoggedIn);
+        MyAuthenticationUtil.addToModelAuthDetails(model, authentication);
         model.addAttribute("foodService", foodService);
         model.addAttribute("allCategories", foodCategoryService.getAllCategories());
         return "menu";

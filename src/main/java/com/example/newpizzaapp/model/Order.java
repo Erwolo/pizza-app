@@ -57,9 +57,10 @@ public class Order {
 
     @Override
     public String toString() {
+
         return "Order{" +
                 "id=" + id +
-                ", user=" + user.getEmail() +
+                ", user=" + (user != null ? user.getEmail(): "") +
                 ", itemsOrdered=" + itemsOrdered +
                 ", isPaid=" + isPaid +
                 '}';

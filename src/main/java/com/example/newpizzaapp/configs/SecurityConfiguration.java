@@ -16,6 +16,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
@@ -44,8 +46,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .antMatchers("/profile").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
                 .and().formLogin().and().csrf().disable();
-        http.logout().invalidateHttpSession(true).permitAll();
-        http.logout().logoutSuccessHandler((new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK)));
+        http.logout().invalidateHttpSession(true).logoutSuccessUrl("/").permitAll()
+                /*.logoutSuccessHandler((request, response, authentication) -> {
+                    response.setStatus(HttpServletResponse.SC_OK);
+                })*/;
     }
 
     @Bean

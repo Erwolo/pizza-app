@@ -1,10 +1,12 @@
 package com.example.newpizzaapp.controller;
 
+import com.example.newpizzaapp.model.MyAuthenticationUtil;
 import com.example.newpizzaapp.model.User;
 import com.example.newpizzaapp.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,8 @@ public class RegisterController {
     }
 
     @GetMapping("/register")
-    public String registerForm(Model model) {
+    public String registerForm(Model model, Authentication authentication) {
+        MyAuthenticationUtil.addToModelAuthDetails(model, authentication);
         model.addAttribute("emptyUser", new User());
         return "register";
     }

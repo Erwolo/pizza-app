@@ -1,10 +1,12 @@
 package com.example.newpizzaapp.controller;
 
 import com.example.newpizzaapp.model.Food;
+import com.example.newpizzaapp.model.MyAuthenticationUtil;
 import com.example.newpizzaapp.services.FoodCategoryService;
 import com.example.newpizzaapp.services.FoodService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,8 @@ public class AdminPanelController {
 
 
     @GetMapping("/admin")
-    public String adminPanel(Model model) {
+    public String adminPanel(Model model, Authentication authentication) {
+        MyAuthenticationUtil.addToModelAuthDetails(model, authentication);
         model.addAttribute("emptyMeal", new Food());
         model.addAttribute("foodCategories", foodCategoryService.getAllCategories());
         return "adminPanel";

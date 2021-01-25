@@ -1,9 +1,6 @@
 package com.example.newpizzaapp.controller;
 
-import com.example.newpizzaapp.model.CartItem;
-import com.example.newpizzaapp.model.FoodOrderDetail;
-import com.example.newpizzaapp.model.Order;
-import com.example.newpizzaapp.model.User;
+import com.example.newpizzaapp.model.*;
 import com.example.newpizzaapp.services.FoodOrderDetailService;
 import com.example.newpizzaapp.services.OrderService;
 import com.example.newpizzaapp.services.UserService;
@@ -40,7 +37,8 @@ public class ConfirmOrderController {
     }
 
     @GetMapping("/confirmorder")
-    public String getConfirmView(Model model) {
+    public String getConfirmView(Model model, Authentication authentication) {
+        MyAuthenticationUtil.addToModelAuthDetails(model, authentication);
         model.addAttribute("cart", orderController.getShoppingCart());
 
         return "confirmorder";
@@ -67,6 +65,7 @@ public class ConfirmOrderController {
         else {
             finalOrder.setUser(null);
         }
+
         orderService.saveOrder(finalOrder);
 
         log.info("Utworzono zamowienie " + finalOrder.toString());
@@ -74,7 +73,7 @@ public class ConfirmOrderController {
 
         orderController.getShoppingCart().clear();
 
-        return "redirect:/confirmorder";
+        return "redirect:/";
     }
 
 }

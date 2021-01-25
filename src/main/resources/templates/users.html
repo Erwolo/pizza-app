@@ -11,19 +11,7 @@
 </head>
 
 <body>
-
-<div class="navbar">
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/menu">Menu</a></li>
-        <li><a href="#"><< RESZTA >></a> </li>
-        <li><a href="/users">Użytkownicy</a></li>
-        <li><a href="/admin">Panel admina</a></li>
-        <li style="float:right"><a href="/register">Zarejestruj</a></li>
-        <li style="float:right"><a class="active" href="/login">Zaloguj</a></li>
-        <li style="float:right"><a href="/logout">Wyloguj</a></li>
-    </ul>
-</div>
+<div th:replace="fragments/navbar :: navbar"></div>
 
 <h1>Użytkownicy w bazie:</h1>
 <table style="border: 1px solid black;">

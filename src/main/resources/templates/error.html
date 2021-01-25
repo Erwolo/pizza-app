@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profil</title>
+    <title>Error</title>
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
-
 </head>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
-
-<h1>Twoja dane:</h1>
+<h1>Wystąpił jakiś błąd</h1>
+<p>Skontaktuj się z adminem tego cyrku</p>
+<p>Kod błędu: </p>
+<p th:text="${errorCode}"></p>
 </body>
 </html>
