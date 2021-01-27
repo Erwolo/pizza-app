@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/inputfield.css" th:href="@{/css/inputfield.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/menustyling.css" th:href="@{/css/menustyling.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
 
 
 </head>
@@ -25,7 +26,7 @@
         <td colspan="2">Brak kategorii</td>
     </tr>
     <tr th:each="category : ${allCategories}">
-        <td><h1 th:text="${category.categoryName}">category_name</h1></td>
+        <td style="display: block; clear: both"><h1 th:text="${category.categoryName}">category_name</h1></td>
         <td>
             <table>
                 <thead>

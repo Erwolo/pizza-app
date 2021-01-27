@@ -10,6 +10,10 @@
     background-color: #333;
 }
 
+.navbar ul .admin-nav {
+    background-color: #095484;
+}
+
 .navbar li {
     float: left;
 }
@@ -26,8 +30,12 @@
     background-color: #111;
 }
 
+.navbar li.admin-nav a:hover:not(.active) {
+    background-color: #03354e;
+}
+
 .navbar .active {
-    background-color: #007bff;
+    background-color: #1f8536;
 }
 
 .navbar .inactive {

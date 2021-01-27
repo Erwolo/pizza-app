@@ -14,13 +14,14 @@
             <li><a href="/menu">Menu</a></li>
             <li><a href="/confirmorder">Koszyk</a></li>
 
-            <li style="margin-left: 30pt" th:if="${isAdmin} == true"><a href="/users">Użytkownicy</a></li>
-            <li th:if="${isAdmin} == true"><a href="/admin">Panel admina</a></li>
-            <li th:if="${isAdmin} == true"><a href="/orderlist">Zamowienia</a></li>
+            <li class="admin-nav" style="margin-left: 30pt" th:if="${isAdmin} == true"><a href="/users">Użytkownicy</a></li>
+            <li class="admin-nav" th:if="${isAdmin} == true"><a href="/admin">Panel admina</a></li>
+            <li class="admin-nav" th:if="${isAdmin} == true"><a href="/orderlist">Zamowienia</a></li>
 
             <li style="float:right" th:if="${isAuthenticated} == false"><a href="/register">Zarejestruj</a></li>
             <li style="float:right" th:if="${isAuthenticated} == false"><a class="active" href="/login">Zaloguj</a></li>
             <li style="float:right" th:if="${isAuthenticated} == true"><a class="inactive" href="/logout">Wyloguj</a>
+            <li style="float:right; margin-right: 10pt" th:if="${isAuthenticated} == true"><a href="/profile">Profil</a></li>
             </li>
         </ul>
     </div>

@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <title>Profil</title>
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
 
 </head>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<h1>Twoja dane:</h1>
+<h1 th:text="${ 'Witaj ' + loggedUser.login}"></h1>
+<p th:text="${'Imie: ' + loggedUser.getFirstName()}"></p>
+<p><p th:text="${'Nazwisko: ' + loggedUser.getLastName()}"></p></p>
+<p><p th:text="${'Login: ' + loggedUser.getLogin()}"></p></p>
+<p><p th:text="${'E-mail: ' + loggedUser.getEmail()}"></p></p>
+<p th:text="'Konto:'">
+<p th:if="${userDetails.isEnabled() == true}" style="color: #1f8536" th:text="aktywne"></p>
+<p th:if="${userDetails.isEnabled() == false}" style="color: #b51f1f" th:text="nieaktywne"></p>
+</p>
+<h1 th:if="${userDetails.isAccountNonLocked() == false}" th:text="Konto zablokowane" style="color: #b51f1f"></h1>
 </body>
 </html>

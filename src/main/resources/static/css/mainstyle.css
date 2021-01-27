@@ -1,8 +1,70 @@
 body {
-    color: darkgrey;
+    color: #222222;
 
 }
 
+#wrapper{
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+}
+
+.content{
+    font-weight: bold;
+    position: relative;
+    z-index: 100;
+}
+
+.background{
+    position: fixed;
+    top: 20px;
+    left: 25%;
+    z-index: -100;
+    width: 50%;
+    min-height: 95%;
+    opacity: 0.4;
+}
+
+
 .body-title {
     text-align: center;
+}
+
+input[type=text], select {
+    width: 20pt;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=number], select {
+    width: 70pt;
+    padding: 6pt;
+    margin: 8pt;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 60pt;
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px;
+    margin: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit].admin-btn {
+    background-color: #095484;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
 }

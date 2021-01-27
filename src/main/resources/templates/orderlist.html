@@ -10,6 +10,27 @@
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 <h1>Zamowienia:</h1>
+<table>
+    <thead>
+    <tr>
+        <td>Nr zamówienia</td>
+        <td>Użytkownik</td>
+        <td>Produkty</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.getId()}"></td>
+        <td><div th:if="${order.isUserEmpty() == false}" th:text="${order.getUser().getEmail()}"></div>
+            <div th:if="${order.isUserEmpty() == true}" th:text="Gość"></div></td>
+        <td th:each="product : ${order.getItemsOrdered()}">
+            <p th:text="${product.getFood().getFoodName()}"></p>
+            <p th:text="${product.getQuantity()}"></p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
 <table></table>
 
 </body>

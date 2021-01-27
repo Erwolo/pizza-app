@@ -55,12 +55,17 @@ public class Order {
         isPaid = paid;
     }
 
+    public boolean isUserEmpty() {
+        if (this.user == null) return true;
+            return false;
+    }
+
     @Override
     public String toString() {
 
         return "Order{" +
                 "id=" + id +
-                ", user=" + (user != null ? user.getEmail(): "") +
+                ", user=" + (user != null ? user.getEmail() : "") +
                 ", itemsOrdered=" + itemsOrdered +
                 ", isPaid=" + isPaid +
                 '}';
