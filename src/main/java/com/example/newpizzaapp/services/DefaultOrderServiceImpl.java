@@ -37,5 +37,8 @@ public class DefaultOrderServiceImpl implements OrderService {
         return orderRepository.findOrdersByIdIsLessThan(id);
     }
 
-
+    @Override
+    public void deleteById(Long id) {
+        orderRepository.deleteById(id);
+    }
 }

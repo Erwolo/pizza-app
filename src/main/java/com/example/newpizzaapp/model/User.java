@@ -1,9 +1,5 @@
 package com.example.newpizzaapp.model;
 
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -36,6 +32,15 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     private Set<Role> roles = new HashSet<>();
+    @OneToMany(
+            fetch = FetchType.EAGER,
+            cascade = {
+                    CascadeType.MERGE,
+                    CascadeType.REMOVE
+            }
+    )
+    @JoinColumn(name = "user_id")
+    private Set<UserAddress> addresses = new HashSet<>();
 
 
     public User() {
@@ -100,7 +105,6 @@ public class User {
     }
 
 
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -111,6 +115,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Set<UserAddress> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<UserAddress> addresses) {
+        this.addresses = addresses;
     }
 
     @Override

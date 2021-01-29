@@ -9,12 +9,10 @@ public class Food {
     @GeneratedValue
     private long id;
     private String foodName;
-    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "food_category_id", nullable = false)
     private FoodCategory foodCategory;
     private float price;
-
-
 
 
     public long getId() {

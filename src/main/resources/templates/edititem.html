@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
+    <link rel="icon" type="image/jpg" href="../static/images/shortcuticon.jpg" th:href="@{/images/shortcuticon.jpg}">
 </head>
 <body>
 
@@ -15,10 +16,14 @@
 <h1>Strona do edytowania jedzenia</h1>
 <form method="post" th:action="@{/update-item}" th:object="${editedFood}">
     <input type="hidden" name="foodId" th:value="${editedFood.getId()}"> <!-- było ${id} sprobuj z *{id} -->
-    <p th:text="Nazwa"></p>
-    <input type="text" name="foodName" th:value="${editedFood.getFoodName()}">
-    <p th:text="Cena"></p>
-    <input type="number" name="foodPrice" th:value="${editedFood.getPrice()}">
+
+    <label>Nazwa:
+        <input type="text" name="foodName" th:value="${editedFood.getFoodName()}">
+    </label><br>
+
+    <label>Cena
+        <input type="number" name="foodPrice" th:value="${editedFood.getPrice()}">
+    </label><br>
 
     <input type="submit">
 </form>

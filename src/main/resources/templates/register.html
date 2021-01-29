@@ -6,23 +6,48 @@
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/registerstyle.css" th:href="@{/css/registerstyle.css}">
-
+    <link rel="icon" type="image/jpg" href="../static/images/shortcuticon.jpg" th:href="@{/images/shortcuticon.jpg}">
+    <style>
+        .inline {
+            display: inline-block;
+            margin-right: 40px;
+        }
+    </style>
 
 </head>
 <body>
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <h1>Rejestracja:</h1>
+<p style="color: #b51f1f" th:if="${isPasswordWrong  == true}">Hasła nie są takie same</p>
+<p style="color: #1f8536" th:if="${isRegSuccess == true}">Pomyślnie założono konto, możesz się zalogować</p>
 <form th:action="@{/add-user}" th:object="${emptyUser}" method="post">
-    <p>Imie:<input type="text" th:field="*{firstName}"></p>
-    <p>Nazwisko:<input type="text" th:field="*{lastName}"></p>
-    <p>E-mail:<input type="text" th:field="*{email}"></p>
-    <p>login:<label>
-        <input type="text" th:field="*{login}">
-    </label></p>
-    <p>haslo:<label>
-        <input type="password" th:field="*{password}">
-    </label></p>
+    <div class="form-section">
+        <p class="inline">Imie:
+            <input type="text" th:field="*{firstName}"></p>
+        <p class="inline">Nazwisko:
+            <input type="text" th:field="*{lastName}"></p>
+    </div>
+    <div class="form-section">
+        <p class="inline">E-mail:
+            <input type="email" th:field="*{email}"></p>
+        <p class="inline">Login:
+            <input type="text" th:field="*{login}"></p>
+    </div>
+    <div class="form-section">
+        <p class="inline">Hasło:
+            <input type="password" th:field="*{password}"></p>
+        <p class="inline">Powtórz hasło:
+            <input type="password" name="reEnteredPassword"></p>
+    </div>
+    <div class="form-section">
+        <p class="inline">Ulica:
+            <input type="text" name="regStreet"></p>
+        <p class="inline">Numer ulicy:
+            <input type="text" name="regNumber"></p>
+        <p class="inline">Numer mieszkania:
+            <input type="text" name="regApartment"></p>
+    </div>
     <p><input type="submit" value="Rejestruj"></p>
 </form>
 

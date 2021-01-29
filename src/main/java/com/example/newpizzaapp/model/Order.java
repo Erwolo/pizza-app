@@ -3,6 +3,9 @@ package com.example.newpizzaapp.model;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +23,9 @@ public class Order {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "item_id")
     private Set<FoodOrderDetail> itemsOrdered = new HashSet<>();
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date orderDate;
+    private float orderTotal;
     private boolean isPaid;
 
 
@@ -45,6 +51,22 @@ public class Order {
 
     public void setItemsOrdered(Set<FoodOrderDetail> itemsOrdered) {
         this.itemsOrdered = itemsOrdered;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public float getOrderTotal() {
+        return orderTotal;
+    }
+
+    public void setOrderTotal(float orderTotal) {
+        this.orderTotal = orderTotal;
     }
 
     public boolean isPaid() {

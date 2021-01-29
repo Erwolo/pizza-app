@@ -57,6 +57,14 @@ public class OrderController {
         log.info(shoppingCart.toString());
     }
 
+    public float getCartTotal() {
+        float total = 0;
+        for (int i = 0; i < shoppingCart.size(); i++) {
+            total = total + shoppingCart.get(i).getFood().getPrice() * shoppingCart.get(i).getQuantity();
+        }
+        return total;
+    }
+
     public List<CartItem> getShoppingCart() {
         return shoppingCart;
     }

@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ProfileController {
@@ -32,4 +33,13 @@ public class ProfileController {
         log.info("Profil użytkownika " + loggedUser);
         return "profile";
     }
+
+    @PostMapping("/change-password")
+    public String changePassword() {
+
+
+        return "redirect:/profile";
+    }
+
+
 }

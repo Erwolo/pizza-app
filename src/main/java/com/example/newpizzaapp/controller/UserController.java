@@ -22,7 +22,6 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping("/users")
     public String getUsers(Model model, Authentication authentication) {
         MyAuthenticationUtil.addToModelAuthDetails(model, authentication);
@@ -31,5 +30,7 @@ public class UserController {
 
         return "users";
     }
+
+
 
 }

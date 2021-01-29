@@ -9,9 +9,9 @@
         }
     </style>
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/inputfield.css" th:href="@{/css/inputfield.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/menustyling.css" th:href="@{/css/menustyling.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
+    <link rel="icon" type="image/jpg" href="../static/images/shortcuticon.jpg" th:href="@{/images/shortcuticon.jpg}">
 
 
 </head>
@@ -47,12 +47,20 @@
                             <input type="hidden" th:value="${food.id}" name="foodId">
                             <input type="number" name="quantity" th:value="1">
                             <input type="submit" th:value="Dodaj">
-                            <input class="admin-btn" type="submit" th:formaction="@{/edit-item}" th:value="Edytuj" th:if="${isAdmin}==true">
-                            <input class="admin-btn" type="submit" th:formaction="@{/remove-item-from-db}" th:value="Usuń" th:if="${isAdmin}==true">
-
+                            <input class="admin-btn" type="submit" th:formaction="@{/edit-item}" th:value="Edytuj"
+                                   th:if="${isAdmin}==true">
+                            <input class="admin-btn" type="submit" th:formaction="@{/remove-item-from-db}"
+                                   th:value="Usuń" th:if="${isAdmin}==true">
                         </form>
                     </td>
-
+                </tr>
+                <tr th:if="${isAdmin} == true">
+                    <form th:action="@{/add-food-to-category}" th:object="${emptyFood}" method="post">
+                        <input type="text" name="newFoodName" th:placeholder="Nazwa" th:field="*{foodName}">
+                        <input type="hidden" name="newCatId" th:value="${category.id}">
+                        <input type="number" name="newFoodPrice" th:field="*{price}">
+                        <input type="submit" th:value="Stwórz">
+                    </form>
                 </tr>
                 </tbody>
             </table>

@@ -7,11 +7,19 @@ import java.util.Set;
 
 @Entity
 public class FoodCategory {
+
     @Id
     @GeneratedValue
     private Long id;
     private String categoryName;
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "foodCategory", fetch = FetchType.EAGER)
+    @OneToMany(
+            cascade = {
+                    CascadeType.MERGE,
+                    CascadeType.REMOVE
+            },
+            mappedBy = "foodCategory",
+            fetch = FetchType.EAGER
+    )
     private Set<Food> foodSet = new HashSet<>();
 
     public FoodCategory() {

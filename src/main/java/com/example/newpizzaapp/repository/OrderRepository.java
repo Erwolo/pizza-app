@@ -9,5 +9,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findOrdersByIdIsLessThan(Long id);
     List<Order> findOrdersByIdBetween(Long idLow, Long idHigh);
+    void deleteById(Long id);
 
 }

@@ -10,5 +10,6 @@ public interface OrderService {
     List<Order> getAllOrders();
     List<Order> findBetween(Long idLow, Long idHigh);
     List<Order> findToId(Long id);
+    void deleteById(Long id);
 
 }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+    <link rel="icon" type="image/jpg" href="../static/images/shortcuticon.jpg" th:href="@{/images/shortcuticon.jpg}">
     <title>Orders</title>
 </head>
 <body>
@@ -13,19 +14,34 @@
 <table>
     <thead>
     <tr>
-        <td>Nr zamówienia</td>
+        <td>Nr Zamowienia</td>
+        <td>Data</td>
         <td>Użytkownik</td>
         <td>Produkty</td>
+        <td>Kwota</td>
+        <td>Status</td>
     </tr>
     </thead>
     <tbody>
     <tr th:each="order : ${orders}">
         <td th:text="${order.getId()}"></td>
-        <td><div th:if="${order.isUserEmpty() == false}" th:text="${order.getUser().getEmail()}"></div>
-            <div th:if="${order.isUserEmpty() == true}" th:text="Gość"></div></td>
-        <td th:each="product : ${order.getItemsOrdered()}">
-            <p th:text="${product.getFood().getFoodName()}"></p>
-            <p th:text="${product.getQuantity()}"></p>
+        <td th:text="${order.getOrderDate()}"></td>
+        <td>
+            <div th:if="${order.isUserEmpty() == false}" th:text="${order.getUser().getEmail()}"></div>
+            <div th:if="${order.isUserEmpty() == true}" th:text="Gość"></div>
+        </td>
+        <td>
+            <table>
+                <tr th:each="product : ${order.getItemsOrdered()}">
+                    <td th:text="${product.getFood().getFoodName()}"></td>
+                    <td th:text="${product.getQuantity()}"></td>
+                </tr>
+            </table>
+        </td>
+        <td th:text="${order.getOrderTotal() + ' PLN'}"></td>
+        <td>
+            <p th:if="${order.isPaid() == true}">Opłacone</p>
+            <p th:if="${order.isPaid() == false}">Nieopłacone</p>
         </td>
     </tr>
     </tbody>

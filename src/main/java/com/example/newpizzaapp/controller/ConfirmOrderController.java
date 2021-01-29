@@ -1,13 +1,19 @@
 package com.example.newpizzaapp.controller;
 
+import ch.qos.logback.core.joran.action.TimestampAction;
 import com.example.newpizzaapp.model.*;
 import com.example.newpizzaapp.services.FoodOrderDetailService;
 import com.example.newpizzaapp.services.FoodService;
 import com.example.newpizzaapp.services.OrderService;
 import com.example.newpizzaapp.services.UserService;
+import org.apache.logging.log4j.message.TimestampMessage;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
+import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -16,6 +22,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +51,9 @@ public class ConfirmOrderController {
     public String getConfirmView(Model model, Authentication authentication) {
         MyAuthenticationUtil.addToModelAuthDetails(model, authentication);
         model.addAttribute("cart", orderController.getShoppingCart());
+        model.addAttribute("cartTotal", orderController.getCartTotal());
 
-        return "confirmorder";
+        return "cart";
     }
 
     @PostMapping("/change-in-cart-quantity")
@@ -65,7 +74,6 @@ public class ConfirmOrderController {
         List<CartItem> cart = orderController.getShoppingCart();
         List<FoodOrderDetail> cartItems = new ArrayList<>();
         Order finalOrder = new Order();
-
         cart.forEach(e -> cartItems.add(new FoodOrderDetail(e.getFood(), e.getQuantity())));
         cartItems.forEach(e -> {
             FoodOrderDetail tmpFOD = foodOrderDetailService.saveCartPositionGetObj(e);
@@ -76,20 +84,21 @@ public class ConfirmOrderController {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             User user = userService.getUserByLogin(userDetails.getUsername());
             finalOrder.setUser(user);
-
         }
         else {
             finalOrder.setUser(null);
         }
 
+        finalOrder.setOrderTotal(orderController.getCartTotal());
+        finalOrder.setOrderDate(new Timestamp(System.currentTimeMillis()));
         orderService.saveOrder(finalOrder);
 
         log.info("Utworzono zamowienie " + finalOrder.toString());
-
-
         orderController.getShoppingCart().clear();
 
         return "redirect:/";
     }
+
+
 
 }

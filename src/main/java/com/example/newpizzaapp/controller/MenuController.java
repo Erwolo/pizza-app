@@ -5,6 +5,8 @@ import com.example.newpizzaapp.model.MyAuthenticationUtil;
 import com.example.newpizzaapp.services.FoodCategoryService;
 import com.example.newpizzaapp.services.FoodService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MenuController {
+    Logger log = LoggerFactory.getLogger(MenuController.class);
 
     private final FoodService foodService;
     private final FoodCategoryService foodCategoryService;
@@ -30,7 +33,17 @@ public class MenuController {
         MyAuthenticationUtil.addToModelAuthDetails(model, authentication);
         model.addAttribute("foodService", foodService);
         model.addAttribute("allCategories", foodCategoryService.getAllCategories());
+        model.addAttribute("emptyFood", new Food());
         return "menu";
+    }
+
+    @PostMapping("/add-food-to-category")
+    public String addnewFoodToCategory(@RequestParam("newCatId") Long id ,@ModelAttribute("emptyFood") Food food) {
+        Long catId = id;
+        food.setFoodCategory(foodCategoryService.getCategoryById(catId).get());
+        foodService.addFood(food);
+        log.info("Dodano nowa pozycje " + food);
+        return "redirect:/menu";
     }
 
     @PostMapping("/remove-item-from-db")

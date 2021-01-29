@@ -5,6 +5,7 @@
     <title>Profil</title>
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
+    <link rel="icon" type="image/jpg" href="../static/images/shortcuticon.jpg" th:href="@{/images/shortcuticon.jpg}">
 
 </head>
 <body>
@@ -12,13 +13,51 @@
 
 <h1 th:text="${ 'Witaj ' + loggedUser.login}"></h1>
 <p th:text="${'Imie: ' + loggedUser.getFirstName()}"></p>
-<p><p th:text="${'Nazwisko: ' + loggedUser.getLastName()}"></p></p>
-<p><p th:text="${'Login: ' + loggedUser.getLogin()}"></p></p>
-<p><p th:text="${'E-mail: ' + loggedUser.getEmail()}"></p></p>
+<p>
+<p th:text="${'Nazwisko: ' + loggedUser.getLastName()}"></p></p>
+<p>
+<p th:text="${'Login: ' + loggedUser.getLogin()}"></p></p>
+<p>
+<p th:text="${'E-mail: ' + loggedUser.getEmail()}"></p></p>
 <p th:text="'Konto:'">
 <p th:if="${userDetails.isEnabled() == true}" style="color: #1f8536" th:text="aktywne"></p>
 <p th:if="${userDetails.isEnabled() == false}" style="color: #b51f1f" th:text="nieaktywne"></p>
 </p>
 <h1 th:if="${userDetails.isAccountNonLocked() == false}" th:text="Konto zablokowane" style="color: #b51f1f"></h1>
+<h3>Zmiana hasła:</h3>
+<form th:action="@{/change-password}" method="post">
+    <label>Hasło:
+        <input type="text" name="prevPass">
+    </label><br>
+    <label>Nowe hasło:
+        <input type="text" name="newPass">
+    </label><br>
+    <label>Powtórz:
+        <input type="text" name="newPassReEnter">
+    </label><br>
+    <input type="submit" value="Zmień">
+</form>
+
+<label>Adresy: <br>
+    <select>
+
+    </select>
+</label>
+
+<h1>Historia zamówień</h1>
+<table>
+    <thead>
+    <tr>
+        <td>Data</td>
+        <td>Kwota</td>
+        <td>Szczegóły</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+       <td></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

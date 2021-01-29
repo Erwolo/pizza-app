@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/inputfield.css" th:href="@{/css/inputfield.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/orderstyling.css" th:href="@{/css/orderstyling.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
+    <link rel="icon" type="image/jpg" href="../static/images/shortcuticon.jpg" th:href="@{/images/shortcuticon.jpg}">
 </head>
 <body>
 
@@ -18,6 +18,7 @@
     <tr th:if="${cart.isEmpty() == false}">
         <td>Nazwa</td>
         <td>Kwota razem</td>
+        <td>Cena jednostkowa</td>
         <td>Ilość</td>
     </tr>
     </thead>
@@ -27,8 +28,10 @@
     </tr>
     <tr th:each="item : ${cart}">
         <td th:text="${item.getFood().getFoodName()}"></td>
-            <th:block th:with="var = ${item.getFood().getPrice() * item.getQuantity()}">
-        <td th:text="${var}"></td></th:block>
+        <td th:text="${item.getFood().getPrice()}"></td>
+        <th:block th:with="var = ${item.getFood().getPrice() * item.getQuantity()}">
+            <td th:text="${var}"></td>
+        </th:block>
         <td>
             <form th:action="@{/change-in-cart-quantity}" method="post">
                 <input type="hidden" th:value="${item.getFood().getId()}" th:name="id">
@@ -39,8 +42,8 @@
         </td>
     </tr>
     </tbody>
-
 </table>
+<p th:if="${cart.empty} == false" th:text="${'Suma: ' + cartTotal + ' PLN'}"></p>
 <form th:action="@{/checkout}" th:object="${cart}" method="post">
     <input type="submit" value="Zamow">
 </form>
