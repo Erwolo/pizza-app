@@ -17,17 +17,18 @@ public class UserAddress {
     private String streetNumber;
     @Nullable
     private String apartment;
-    /*@ManyToOne( cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User user;*/
+    private User user;
 
     public UserAddress() {
     }
 
-    public UserAddress(String streetName, String streetNumber, @Nullable String apartment) {
+    public UserAddress(User user, String streetName, String streetNumber, @Nullable String apartment) {
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.apartment = apartment;
+        this.user = user;
     }
 
     public long getId() {
@@ -63,13 +64,13 @@ public class UserAddress {
         this.apartment = apartment;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Override
     public String toString() {

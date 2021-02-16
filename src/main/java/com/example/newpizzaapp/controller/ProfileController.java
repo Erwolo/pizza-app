@@ -2,6 +2,7 @@ package com.example.newpizzaapp.controller;
 
 import com.example.newpizzaapp.model.MyAuthenticationUtil;
 import com.example.newpizzaapp.model.User;
+import com.example.newpizzaapp.services.UserAddressService;
 import com.example.newpizzaapp.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +19,11 @@ public class ProfileController {
     Logger log = LoggerFactory.getLogger(ProfileController.class);
 
     private final UserService userService;
+    private final UserAddressService userAddressService;
 
-    public ProfileController(UserService userService) {
+    public ProfileController(UserService userService, UserAddressService userAddressService) {
         this.userService = userService;
+        this.userAddressService = userAddressService;
     }
 
     @GetMapping("/profile")
@@ -30,7 +33,7 @@ public class ProfileController {
         User loggedUser = userService.getUserByLogin(userDetails.getUsername());
         model.addAttribute("loggedUser", loggedUser);
         model.addAttribute("userDetails", userDetails);
-        log.info("Profil użytkownika " + loggedUser);
+        model.addAttribute("userAddresses", userAddressService.getUserAdresses(userDetails.getUsername()));
         return "profile";
     }
 

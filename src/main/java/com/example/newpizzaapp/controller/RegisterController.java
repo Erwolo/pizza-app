@@ -7,8 +7,6 @@ import com.example.newpizzaapp.services.UserAddressService;
 import com.example.newpizzaapp.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RegisterController {
+
     Logger log = LoggerFactory.getLogger(RegisterController.class);
 
     private final UserService userService;
@@ -55,15 +54,15 @@ public class RegisterController {
             @RequestParam("regNumber") String streetNumber,
             @RequestParam("regApartment") String apartment
     ) {
-        if(!retypedPassword.equals(user.getPassword())) {
+        if (!retypedPassword.equals(user.getPassword())) {
             log.info("Haslo zle");
             return "redirect:/register?wrong_pass=true";
         }
-        UserAddress tmpAddress = userAddressService.saveAddressGetObj(new UserAddress(streetName, streetNumber, apartment));
         user.setActive(true);
-        user.getAddresses().add(tmpAddress);
         userService.addRoleUser(user);
-        userService.saveUser(user);
+        User savedUser = userService.saveUser(user);
+        UserAddress tmpAddress = userAddressService.saveAddressGetObj(new UserAddress(savedUser, streetName, streetNumber, apartment));
+
         log.info("Dodano uzytkownika " + user.toString());
         return "redirect:/register?register_success=true";
     }

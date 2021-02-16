@@ -28,23 +28,47 @@
     </tr>
     <tr th:each="item : ${cart}">
         <td th:text="${item.getFood().getFoodName()}"></td>
-        <td th:text="${item.getFood().getPrice()}"></td>
         <th:block th:with="var = ${item.getFood().getPrice() * item.getQuantity()}">
             <td th:text="${var}"></td>
         </th:block>
+        <td th:text="${item.getFood().getPrice()}"></td>
         <td>
             <form th:action="@{/change-in-cart-quantity}" method="post">
                 <input type="hidden" th:value="${item.getFood().getId()}" th:name="id">
                 <input class="quant-field" type="number" th:value="${item.getQuantity()}" th:name="newQuantity">
-                <input type="submit" th:value="Potwierdź">
+                <input type="submit" th:value="Zmień">
                 <input type="submit" th:value="Usuń" th:formaction="@{/remove-from-cart}">
             </form>
         </td>
     </tr>
     </tbody>
 </table>
+
+<div th:if="${cart.empty} == false">
+    <select th:if="${isAddressesEmpty} == false">
+        <option>Wybierz adres</option>
+        <option
+                th:each="address : ${userAddresses}"
+                th:text="${address.getStreetName() + ' ' + address.getStreetNumber()}"
+                th:value="${address.id}">
+        </option>
+    </select>
+    <form th:if="${isAddressesEmpty}">
+        <label>Ulica:
+            <input type="text">
+        </label>
+        <label>Numer:
+            <input type="text">
+        </label>
+        <label>Mieszkanie:
+            <input type="text">
+        </label>
+        <input type="submit" th:value="Zapisz">
+    </form>
+</div>
+
 <p th:if="${cart.empty} == false" th:text="${'Suma: ' + cartTotal + ' PLN'}"></p>
-<form th:action="@{/checkout}" th:object="${cart}" method="post">
+<form th:if="${cart.empty} == false" th:action="@{/checkout}" th:object="${cart}" method="post">
     <input type="submit" value="Zamow">
 </form>
 </body>

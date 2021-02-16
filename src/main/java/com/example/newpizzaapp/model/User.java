@@ -10,8 +10,8 @@ import java.util.Set;
 public class User {
 
     @Id
-    @Column(unique = true, nullable = false)
     @GeneratedValue
+    @Column(unique = true, nullable = false)
     private Long id;
     private String firstName;
     private String lastName;
@@ -37,9 +37,10 @@ public class User {
             cascade = {
                     CascadeType.MERGE,
                     CascadeType.REMOVE
-            }
+            },
+            mappedBy = "user"
     )
-    @JoinColumn(name = "user_id")
+//    @JoinColumn(name = "user_id")
     private Set<UserAddress> addresses = new HashSet<>();
 
 
@@ -127,8 +128,6 @@ public class User {
 
     @Override
     public String toString() {
-
-
         return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +

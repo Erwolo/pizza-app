@@ -10,7 +10,7 @@ public interface UserService {
     User getUserById(Long id);
     User getUserByLogin(String login);
     List<User> getAllUsers();
-    void saveUser(User user);
+    User saveUser(User user);
     void addRoleUser(User user);
     void addRoleAdmin(User user);
 

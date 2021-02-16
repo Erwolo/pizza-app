@@ -20,8 +20,8 @@
 <p>
 <p th:text="${'E-mail: ' + loggedUser.getEmail()}"></p></p>
 <p th:text="'Konto:'">
-<p th:if="${userDetails.isEnabled() == true}" style="color: #1f8536" th:text="aktywne"></p>
-<p th:if="${userDetails.isEnabled() == false}" style="color: #b51f1f" th:text="nieaktywne"></p>
+    <p th:if="${userDetails.isEnabled() == true}" style="color: #1f8536" th:text="aktywne"></p>
+    <p th:if="${userDetails.isEnabled() == false}" style="color: #b51f1f" th:text="nieaktywne"></p>
 </p>
 <h1 th:if="${userDetails.isAccountNonLocked() == false}" th:text="Konto zablokowane" style="color: #b51f1f"></h1>
 <h3>Zmiana hasła:</h3>
@@ -38,11 +38,28 @@
     <input type="submit" value="Zmień">
 </form>
 
-<label>Adresy: <br>
-    <select>
+<form th:action="@{/edit-address}" method="post">
+    <label>Adresy: <br>
+        <select id="addressSelect" onchange="showElement()">
+            <option>Wybierz adres</option>
+            <option th:each="address : ${userAddresses}"
+                    th:text="${address.getStreetName() + ' ' + address.getStreetNumber()}"
+                    th:value="${userAddresses.indexOf(address)}" name="addressId"></option>
+        </select>
+    </label>
+    <input type="submit" th:value="Edytuj">
+</form>
 
-    </select>
-</label>
+<div id="addressEdit">
+    <form>
+        <input id="editingAddressId" type="hidden" value="tmp">
+        <input id="editingStreetName" type="text" value="tmp">
+        <input id="editingStreetNumber" type="text" value="tmp">
+        <input id="editingStreetApartment" type="text" value="tmp">
+        <input type="submit" th:value="Zmień">
+    </form>
+</div>
+
 
 <h1>Historia zamówień</h1>
 <table>
@@ -55,9 +72,32 @@
     </thead>
     <tbody>
     <tr>
-       <td></td>
+        <td></td>
     </tr>
     </tbody>
 </table>
+
+<!--<script th:inline="javascript">
+    /*<![CDATA[*/
+    var streetName = /*[[${userAddresses[0]}]]*/ null;
+    /*]]>*/
+</script>-->
+
+<script>
+    console.log("test loggera");
+    var editing = document.getElementById("addressEdit");
+    var addressSelect = document.getElementById("addressSelect");
+    var addressIndex;
+    editing.style.display = "none"
+
+    function showElement() {
+        addressIndex = addressSelect.value;
+        // document.getElementById("editingStreetName").value = streetName;
+        editing.style.display = "none"
+        editing.style.display = "block";
+        console.log("wywolano funkcje");
+    }
+</script>
+
 </body>
 </html>

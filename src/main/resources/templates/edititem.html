@@ -15,7 +15,7 @@
 
 <h1>Strona do edytowania jedzenia</h1>
 <form method="post" th:action="@{/update-item}" th:object="${editedFood}">
-    <input type="hidden" name="foodId" th:value="${editedFood.getId()}"> <!-- było ${id} sprobuj z *{id} -->
+    <input type="hidden" name="foodId" th:value="${editedFood.getId()}">
 
     <label>Nazwa:
         <input type="text" name="foodName" th:value="${editedFood.getFoodName()}">

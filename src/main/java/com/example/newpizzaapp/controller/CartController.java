@@ -1,19 +1,10 @@
 package com.example.newpizzaapp.controller;
 
-import ch.qos.logback.core.joran.action.TimestampAction;
+
 import com.example.newpizzaapp.model.*;
-import com.example.newpizzaapp.services.FoodOrderDetailService;
-import com.example.newpizzaapp.services.FoodService;
-import com.example.newpizzaapp.services.OrderService;
-import com.example.newpizzaapp.services.UserService;
-import org.apache.logging.log4j.message.TimestampMessage;
-import org.hibernate.Hibernate;
+import com.example.newpizzaapp.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
-import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -23,28 +14,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
-public class ConfirmOrderController {
+public class CartController {
 
-    Logger log = LoggerFactory.getLogger(ConfirmOrderController.class);
+    Logger log = LoggerFactory.getLogger(CartController.class);
 
     private final FoodService foodService;
     private final OrderController orderController;
     private final FoodOrderDetailService foodOrderDetailService;
     private final OrderService orderService;
     private final UserService userService;
+    private final UserAddressService userAddressService;
 
-    public ConfirmOrderController(OrderController orderController, OrderService orderService, FoodOrderDetailService foodOrderDetailService, UserService userService, FoodService foodService) {
+    public CartController
+            (
+                    OrderController orderController,
+                    OrderService orderService,
+                    FoodOrderDetailService foodOrderDetailService,
+                    UserService userService,
+                    FoodService foodService,
+                    UserAddressService userAddressService
+            ) {
         this.orderController = orderController;
         this.orderService = orderService;
         this.foodOrderDetailService = foodOrderDetailService;
         this.userService = userService;
         this.foodService = foodService;
+        this.userAddressService = userAddressService;
     }
 
     @GetMapping("/confirmorder")
@@ -52,6 +52,21 @@ public class ConfirmOrderController {
         MyAuthenticationUtil.addToModelAuthDetails(model, authentication);
         model.addAttribute("cart", orderController.getShoppingCart());
         model.addAttribute("cartTotal", orderController.getCartTotal());
+        model.addAttribute("isAddressesEmpty", false);
+        if (authentication != null) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            List<UserAddress> userAddresses = userAddressService.getUserAdresses(userDetails.getUsername());
+            if (userAddresses.isEmpty()) {
+                model.addAttribute("isAddressesEmpty", true);
+            }
+            else {
+                model.addAttribute("userAddresses",userAddresses);
+            }
+        }
+        else {
+            model.addAttribute("isAddressesEmpty", true);
+        }
+
 
         return "cart";
     }
@@ -89,6 +104,7 @@ public class ConfirmOrderController {
             finalOrder.setUser(null);
         }
 
+
         finalOrder.setOrderTotal(orderController.getCartTotal());
         finalOrder.setOrderDate(new Timestamp(System.currentTimeMillis()));
         orderService.saveOrder(finalOrder);
@@ -98,7 +114,6 @@ public class ConfirmOrderController {
 
         return "redirect:/";
     }
-
 
 
 }
