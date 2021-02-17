@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Stwórz adres</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/mainstyle.css" th:href="@{/css/mainstyle.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+    <link rel="icon" type="image/jpg" href="../static/images/shortcuticon.jpg" th:href="@{/images/shortcuticon.jpg}">
 </head>
 <body>
+<div th:replace="fragments/navbar :: navbar"></div>
 
+    <h1>Dodaj nowy adres:</h1>
+<form th:action="@{/save-new-address}" th:object="${emptyAddress}" method="post">
+    <p>Ulica:
+        <input type="text" th:placeholder="Ulica" th:field="*{streetName}">
+    </p><p>Numer:
+        <input type="text" th:placeholder="Numer" th:field="*{streetNumber}">
+    </p><p>Mieszkanie:
+        <input type="text" th:placeholder="Mieszkanie" th:field="*{apartment}">
+    </p>
+    <p><input type="submit" th:value="Dodaj"></p>
+</form>
 </body>
 </html>

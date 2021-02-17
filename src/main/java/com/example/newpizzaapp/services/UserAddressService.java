@@ -9,5 +9,6 @@ public interface UserAddressService {
     UserAddress saveAddressGetObj(UserAddress userAddress);
     List<UserAddress> getUserAdresses(String login);
     UserAddress findById(Long id);
+    void saveAddress(UserAddress userAddress);
 
 }

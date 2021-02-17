@@ -30,4 +30,9 @@ public class DefaultUserAddressServiceImpl implements UserAddressService {
     public UserAddress findById(Long id) {
         return userAddressRepsitory.findUserAddressById(id);
     }
+
+    @Override
+    public void saveAddress(UserAddress userAddress) {
+        userAddressRepsitory.save(userAddress);
+    }
 }
