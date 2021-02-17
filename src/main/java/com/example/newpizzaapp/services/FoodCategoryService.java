@@ -9,4 +9,6 @@ public interface FoodCategoryService {
 
     List<FoodCategory> getAllCategories();
     Optional<FoodCategory> getCategoryById(Long id);
+    void saveCategory(FoodCategory foodCategory);
+    void saveCategoryWithNextId(FoodCategory foodCategory);
 }

@@ -27,4 +27,15 @@ public class DefaultFoodCategoryServiceImpl implements FoodCategoryService {
     public Optional<FoodCategory> getCategoryById(Long id) {
         return foodCategoryRepository.findById(id);
     }
+
+    @Override
+    public void saveCategory(FoodCategory foodCategory) {
+        foodCategoryRepository.save(foodCategory);
+    }
+
+    public void saveCategoryWithNextId(FoodCategory foodCategory) {
+        FoodCategory tmp = foodCategoryRepository.findTopByOrderByIdDesc();
+        foodCategory.setId(tmp.getId() + 1);
+        foodCategoryRepository.save(foodCategory);
+    }
 }

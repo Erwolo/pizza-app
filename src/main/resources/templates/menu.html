@@ -67,6 +67,12 @@
         </td>
     </tr>
 </table>
+<div th:if="${isAdmin}">
+    <form method="post" th:action="@{/add-menu-category}" th:object="${emptyCategory}">
+        <input type="text" placeholder="Nowa kategoria" th:field="*{categoryName}">
+        <input type="submit" value="Dodaj">
+    </form>
+</div>
 
 </body>
 </html>

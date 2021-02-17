@@ -7,17 +7,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class DataLoader implements ApplicationRunner {
-
-    private final FoodCategoryRepository foodCategoryRepository;
-    private final OrderRepository orderRepository;
-
-    public DataLoader(FoodCategoryRepository foodCategoryRepository, OrderRepository orderRepository) {
-        this.foodCategoryRepository = foodCategoryRepository;
-        this.orderRepository = orderRepository;
-    }
-
 
     public void run(ApplicationArguments args) {
 

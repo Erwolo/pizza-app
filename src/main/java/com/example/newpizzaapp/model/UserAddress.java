@@ -11,7 +11,7 @@ import java.util.Set;
 public class UserAddress {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String streetName;
     private String streetNumber;

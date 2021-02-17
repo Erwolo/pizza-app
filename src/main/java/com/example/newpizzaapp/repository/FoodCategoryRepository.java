@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface FoodCategoryRepository extends JpaRepository<FoodCategory, Long> {
     FoodCategory findFoodCategoryByCategoryName(String name);
     FoodCategory findFoodCategoryById(Long id);
+    FoodCategory findTopByOrderByIdDesc();
 
 }

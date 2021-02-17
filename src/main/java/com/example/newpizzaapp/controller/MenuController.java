@@ -1,6 +1,7 @@
 package com.example.newpizzaapp.controller;
 
 import com.example.newpizzaapp.model.Food;
+import com.example.newpizzaapp.model.FoodCategory;
 import com.example.newpizzaapp.model.MyAuthenticationUtil;
 import com.example.newpizzaapp.services.FoodCategoryService;
 import com.example.newpizzaapp.services.FoodService;
@@ -34,6 +35,7 @@ public class MenuController {
         model.addAttribute("foodService", foodService);
         model.addAttribute("allCategories", foodCategoryService.getAllCategories());
         model.addAttribute("emptyFood", new Food());
+        model.addAttribute("emptyCategory", new FoodCategory());
         return "menu";
     }
 
@@ -57,6 +59,13 @@ public class MenuController {
             (@RequestParam(value = "foodId") long idFood, @RequestParam(value = "quantity") int quantity) {
         Food food = foodService.getFoodById(idFood);
         orderController.addToCart(food, quantity);
+        return "redirect:/menu";
+    }
+
+    @PostMapping("/add-menu-category")
+    public String addMenuCategory(@ModelAttribute FoodCategory foodCategory) {
+        log.info("Zapisano kategorie " + foodCategory);
+        foodCategoryService.saveCategoryWithNextId(foodCategory);
         return "redirect:/menu";
     }
 

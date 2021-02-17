@@ -9,7 +9,7 @@ import java.util.Set;
 public class FoodCategory {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String categoryName;
     @OneToMany(
@@ -23,6 +23,10 @@ public class FoodCategory {
     private Set<Food> foodSet = new HashSet<>();
 
     public FoodCategory() {
+    }
+
+    public FoodCategory(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public void addFood(Food food) {
