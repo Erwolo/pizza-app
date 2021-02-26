@@ -26,7 +26,16 @@
         <td colspan="2">Brak kategorii</td>
     </tr>
     <tr th:each="category : ${allCategories}">
+        <table>
         <td style="display: block; clear: both"><h1 th:text="${category.categoryName}">category_name</h1></td>
+            <td th:if="${isAdmin} == true" style="width: 250px">
+                <form method="post" th:action="@{/remove-menu-category}">
+                    <input type="hidden" name="rmCategoryId" th:value="${category.id}">
+                    <input type="submit" value="Usuń kategorie" class="admin-btn">
+                </form>
+            </td>
+
+        </table>
         <td>
             <table>
                 <thead>
@@ -61,15 +70,20 @@
                         <input type="number" name="newFoodPrice" th:field="*{price}">
                         <input type="submit" th:value="Stwórz">
                     </form>
+
                 </tr>
                 </tbody>
             </table>
+
         </td>
+
     </tr>
 </table>
 <div th:if="${isAdmin}">
     <form method="post" th:action="@{/add-menu-category}" th:object="${emptyCategory}">
-        <input type="text" placeholder="Nowa kategoria" th:field="*{categoryName}">
+        <label>Dodaj kategorię
+            <input type="text" placeholder="Nowa kategoria" th:field="*{categoryName}">
+        </label>
         <input type="submit" value="Dodaj">
     </form>
 </div>

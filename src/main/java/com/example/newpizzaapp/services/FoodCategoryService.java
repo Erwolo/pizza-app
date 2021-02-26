@@ -11,4 +11,5 @@ public interface FoodCategoryService {
     Optional<FoodCategory> getCategoryById(Long id);
     void saveCategory(FoodCategory foodCategory);
     void saveCategoryWithNextId(FoodCategory foodCategory);
+    void removeCategoryById(Long id);
 }

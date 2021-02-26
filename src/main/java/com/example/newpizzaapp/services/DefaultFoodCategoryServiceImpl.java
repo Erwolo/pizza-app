@@ -38,4 +38,9 @@ public class DefaultFoodCategoryServiceImpl implements FoodCategoryService {
         foodCategory.setId(tmp.getId() + 1);
         foodCategoryRepository.save(foodCategory);
     }
+
+    @Override
+    public void removeCategoryById(Long id) {
+        foodCategoryRepository.deleteById(id);
+    }
 }

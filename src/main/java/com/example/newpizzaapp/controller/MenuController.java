@@ -69,6 +69,12 @@ public class MenuController {
         return "redirect:/menu";
     }
 
+    @PostMapping("/remove-menu-category")
+    public String removeMenuCategory(@RequestParam(value = "rmCategoryId") Long id) {
+        foodCategoryService.removeCategoryById(id);
+        return "redirect:/menu";
+    }
+
 
 //    @Secured("ROLE_ADMIN")
 //    @RolesAllowed("ROLE_ADMIN")
