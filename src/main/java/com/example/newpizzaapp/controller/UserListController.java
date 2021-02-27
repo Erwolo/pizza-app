@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class UserController {
+public class UserListController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserListController(UserService userService) {
 
         this.userService = userService;
     }

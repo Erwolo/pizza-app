@@ -21,7 +21,10 @@
     <tr th:each="user : ${users}">
         <td><p th:text="${user.getId()}"></p></td>
         <td><p th:text="${user.getFirstName()}"></p></td>
-        <td><p th:text="${user.getLastName()}"></p></td></tr>
+        <td><p th:text="${user.getLastName()}"></p></td>
+        <td><p th:text="${user.getEmail()}"></p></td>
+        <td><p th:text="${user.getLogin()}"></p></td>
+    </tr>
 </table>
 
 </body>

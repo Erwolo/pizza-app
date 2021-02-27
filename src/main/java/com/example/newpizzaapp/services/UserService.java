@@ -13,5 +13,6 @@ public interface UserService {
     User saveUser(User user);
     void addRoleUser(User user);
     void addRoleAdmin(User user);
+    void changePassword(User user, String newPassword);
 
 }

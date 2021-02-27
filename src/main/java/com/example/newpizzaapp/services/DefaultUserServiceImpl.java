@@ -49,5 +49,11 @@ public class DefaultUserServiceImpl implements UserService {
         user.getRoles().add(roleRepository.findRoleByRoleName("ADMIN"));
     }
 
+    @Override
+    public void changePassword(User user, String newPassword) {
+        user.setPassword(newPassword);
+        userRepository.save(user);
+    }
+
 }
 
